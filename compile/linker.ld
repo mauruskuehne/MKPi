@@ -6,8 +6,8 @@ MEMORY
 SECTIONS
 {
 	.text : {
-		/*irq.o;
-		bootstrap.o;*/
+		/*irq.o;*/
+		bootstrap.o;
 		../build/main.o;
 	} > ram
 }

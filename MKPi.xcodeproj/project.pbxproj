@@ -12,6 +12,7 @@
 		72C103D91A5846790084D4AA /* bootstrap.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = bootstrap.S; sourceTree = "<group>"; };
 		72C103DA1A584A180084D4AA /* linker.ld */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = linker.ld; sourceTree = "<group>"; };
 		72C103DB1A584AAB0084D4AA /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; usesTabs = 0; };
+		72C103DC1A584F4A0084D4AA /* kernel.ld */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kernel.ld; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -37,6 +38,7 @@
 			isa = PBXGroup;
 			children = (
 				72C103DB1A584AAB0084D4AA /* makefile */,
+				72C103DC1A584F4A0084D4AA /* kernel.ld */,
 				72C103DA1A584A180084D4AA /* linker.ld */,
 			);
 			path = compile;
