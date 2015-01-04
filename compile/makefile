@@ -26,7 +26,7 @@ ASM_OBJECTS=$(addprefix $(BUILD)/,$(notdir $(ASMSRC:.S=.o)))
 all: IMAGE
 
 CPP: $(CPPSRC)
-	$(CPPC) -c -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles $(CPPSRC) -o $(CPP_OBJECTS)
+	$(CPPC) -c -std=c++11 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles $(CPPSRC) -o $(CPP_OBJECTS)
 
 ASM: $(ASMSRC)
 	$(ASMC) $(ASMSRC) -o $(ASM_OBJECTS)
