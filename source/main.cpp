@@ -41,23 +41,32 @@ int main() {
   interruptExecuted = false;
   
   blink();
-  asm volatile( "SWI #0x0000FF" );
+  asm volatile( "SWI #0x00000A" );
   blink();
   while (!interruptExecuted) {
     dummy(0);
   }
-  
+  /*
   while(1)
   {
     PUT32(GPSET0,1<<16);
     for(ra=0;ra<0x100000;ra++) dummy(ra);
     PUT32(GPCLR0,1<<16);
     for(ra=0;ra<0x100000;ra++) dummy(ra);
-  }
+  }*/
   
   return 0;
 }
 
-extern "C" void irq_handler( void ) {
+extern "C" void irq_handler( uint32_t value ) {
+  
+  unsigned int ra;
+  for(int i = 0; i < value; i++)
+  {
+    PUT32(GPSET0,1<<16);
+    for(ra=0;ra<0x100000;ra++) dummy(ra);
+    PUT32(GPCLR0,1<<16);
+    for(ra=0;ra<0x100000;ra++) dummy(ra);
+  }
   interruptExecuted = true;
 }
