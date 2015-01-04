@@ -28,22 +28,6 @@ void blink() {
 
 volatile bool interruptExecuted = false;
 
-bool irq_enable( void ) {
-  
-  volatile uint32_t* address = (volatile uint32_t*)( 0x2000b000 );
-  
-  // ENABLE IRQ 1
-  //*( address + 0x210 ) = (uint32_t)0x1000000000000; //0xFFFFFFFF;
-  
-  // ENABLE IRQ 2
-  //*( address + 0x214 ) = 0xFFFFFFFF;
-  
-  // ENABLE BASIC IRQ
-  //*( address + 0x218 ) = 0x000000FF;
-  
-  return true;
-}
-
 int main() {
   unsigned int ra;
   
@@ -55,10 +39,6 @@ int main() {
   blink();
   
   interruptExecuted = false;
-  
-  blink();
-  
-  irq_enable();
   
   blink();
   asm volatile( "SWI #0x0000FF" );
@@ -79,6 +59,5 @@ int main() {
 }
 
 extern "C" void irq_handler( void ) {
-  blink();
-  //interruptExecuted = true;
+  interruptExecuted = true;
 }

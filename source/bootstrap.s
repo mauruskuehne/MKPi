@@ -109,7 +109,12 @@ hang:
 .extern irq_handler
 ;@ And here is the actual interrupt handler code.
 arm_interrupt_handler:
-
+  push {r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,lr}
+  bl irq_handler
+  pop  {r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,lr}
+  movs pc,r14
+  //subs pc,lr,#4
+/*
 	;@ Store the return link.
 	sub r14, r14, #4
 	stmfd sp!, {r0,r1,r2,r3,r4,r14}
@@ -119,4 +124,5 @@ arm_interrupt_handler:
 	
 	;@ Restore to the original caller.
 	ldmfd sp!, {r0,r1,r2,r3,r4,pc}^
-	bx lr
+	//bx lr
+  movs pc, r14*/
