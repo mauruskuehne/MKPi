@@ -11,14 +11,14 @@ BUILD=../build
 
 #sources to compile:
 CPPSRC=$(wildcard $(SOURCE)/*.cpp)
-ASMSRC=$(wildcard $(SOURCE)/*.S)
+ASMSRC=$(wildcard $(SOURCE)/*.s)
 
 #linkscript
 LINKSCRIPT=kernel.ld
 
 #generated objects:
 CPP_OBJECTS=$(addprefix $(BUILD)/,$(notdir $(CPPSRC:.cpp=.o)))
-ASM_OBJECTS=$(addprefix $(BUILD)/,$(notdir $(ASMSRC:.S=.o)))
+ASM_OBJECTS=$(addprefix $(BUILD)/,$(notdir $(ASMSRC:.s=.o)))
 
 
 ###### TARGETS

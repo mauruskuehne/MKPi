@@ -18,9 +18,7 @@ extern "C" void dummy ( unsigned int );
 #define GPCLR0  0x20200028
 
 int main() {
-  
-  //char* x = nullptr;
-  
+    
   unsigned int ra;
   
   ra=GET32(GPFSEL1);
