@@ -11,7 +11,10 @@ SECTIONS {
         * be run first. We allow room for the ATAGs and stack and conform to 
         * the bootloader's expectation by putting this code at 0x8000.
 	*/
+  . = 0x8000;
+
 	.init 0x8000 : {
+    *(.interrupt)
 		*(.init)
 	}
 	
@@ -34,7 +37,11 @@ SECTIONS {
 	* sections into this section, which will be discarded by default.
 	*/
 
+  .other : {
+    *(*)
+  }
+/*
 	/DISCARD/ : {
 		*(*)
-	}
+	}*/
 }
