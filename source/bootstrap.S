@@ -1,5 +1,5 @@
 .global init
-.extern kmain
+.extern main
 .globl _start
 _start:
 init:	
@@ -25,3 +25,17 @@ str r1,[r0,#40]
 
 hang$:
 	b hang$
+
+.global PUT32
+PUT32:
+    str r1,[r0]
+    bx lr
+
+.global GET32
+GET32:
+    ldr r0,[r0]
+    bx lr
+
+.global dummy
+dummy:
+    bx lr
