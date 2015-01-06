@@ -28,6 +28,9 @@ all: IMAGE
 $(BUILD)/%.o: $(SOURCE)/%.cpp
 	$(CPPC) -c -std=c++11 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles -o $@ $^
 
+$(BUILD)/%.o: $(SOURCE)/%.s
+	$(ASMC) -o $@ $^
+
 CPP: $(CPPSRC)
 	$(CPPC) -c -std=c++11 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles $(CPPSRC) -o $(CPP_OBJECTS)
 
