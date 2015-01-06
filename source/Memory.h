@@ -9,11 +9,14 @@
 #ifndef __MKPi__Memory__
 #define __MKPi__Memory__
 
-#include <stdio.h>
+#include <stdint.h>
 
 namespace HIL {
   namespace Memory {
-    static void MemoryBarrier();
+    volatile void MemoryBarrier();
+    volatile uint32_t PhysicalToVirtualAddress( uint32_t physicalAddress);
+    volatile uint32_t PhysicalToBusAddress( uint32_t physicalAddress );
+    volatile uint32_t BusToPhysicalAddress( uint32_t busAddress );
   };
 }
 

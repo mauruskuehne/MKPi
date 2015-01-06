@@ -8,16 +8,19 @@
 
 #include "main.h"
 #include "Memory.h"
+#include "Framebuffer.h"
 #include <cstdint>
+#include <stdlib.h>
 
 extern "C" void PUT32 ( unsigned int, unsigned int );
 extern "C" unsigned int GET32 ( unsigned int );
 extern "C" void dummy ( unsigned int );
 
-
 #define GPFSEL1 0x20200004
 #define GPSET0  0x2020001C
 #define GPCLR0  0x20200028
+
+using namespace HIL;
 
 void blink() {
   unsigned int ra;
@@ -25,6 +28,14 @@ void blink() {
   for(ra=0;ra<0x100000;ra++) dummy(ra);
   PUT32(GPCLR0,1<<16);
   for(ra=0;ra<0x100000;ra++) dummy(ra);
+}
+
+void blink(int speed) {
+  unsigned int ra;
+  PUT32(GPSET0,1<<16);
+  for(ra=0;ra<speed;ra++) dummy(ra);
+  PUT32(GPCLR0,1<<16);
+  for(ra=0;ra<speed;ra++) dummy(ra);
 }
 
 volatile bool interruptExecuted = false;
@@ -37,13 +48,18 @@ int main() {
   ra|=1<<18;
   PUT32(GPFSEL1,ra);
   
+  
+  Framebuffer* buffer;
+  
+  buffer->initialize();
+  /*
   blink();
   
   interruptExecuted = false;
   
   blink();
   asm volatile( "SWI #0x00000A" );
-  blink();
+  blink();*/
   while (!interruptExecuted) {
     dummy(0);
   }
