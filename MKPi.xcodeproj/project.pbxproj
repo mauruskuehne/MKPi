@@ -6,6 +6,24 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		72CBBE9E1A5C44D9004E01CB /* Memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CBBE901A5C4359004E01CB /* Memory.cpp */; };
+		72CBBE9F1A5C44DF004E01CB /* bootstrap.s in Sources */ = {isa = PBXBuildFile; fileRef = 72C103D91A5846790084D4AA /* bootstrap.s */; };
+		72CBBEA01A5C44E1004E01CB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72C103C31A5840100084D4AA /* main.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		72CBBE941A5C44D0004E01CB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		72C103C31A5840100084D4AA /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		72C103C41A5840100084D4AA /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
@@ -13,7 +31,20 @@
 		72C103DA1A584A180084D4AA /* linker.ld */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = linker.ld; sourceTree = "<group>"; };
 		72C103DB1A584AAB0084D4AA /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; usesTabs = 0; };
 		72C103DC1A584F4A0084D4AA /* kernel.ld */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kernel.ld; sourceTree = "<group>"; };
+		72CBBE901A5C4359004E01CB /* Memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Memory.cpp; sourceTree = "<group>"; };
+		72CBBE911A5C4359004E01CB /* Memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memory.h; sourceTree = "<group>"; };
+		72CBBE961A5C44D0004E01CB /* MKPi-doc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "MKPi-doc"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		72CBBE931A5C44D0004E01CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		726A95731A5839D6005D0695 = {
@@ -21,12 +52,15 @@
 			children = (
 				72C103D81A58458B0084D4AA /* compile */,
 				72C103C21A583FD80084D4AA /* source */,
+				72CBBE971A5C44D0004E01CB /* Products */,
 			);
 			sourceTree = "<group>";
 		};
 		72C103C21A583FD80084D4AA /* source */ = {
 			isa = PBXGroup;
 			children = (
+				72C2BBBD1A5B2E2B004BEE7A /* Display */,
+				72C2BBBC1A5B2E1A004BEE7A /* HIL */,
 				72C103D91A5846790084D4AA /* bootstrap.s */,
 				72C103C31A5840100084D4AA /* main.cpp */,
 				72C103C41A5840100084D4AA /* main.h */,
@@ -42,6 +76,30 @@
 				72C103DA1A584A180084D4AA /* linker.ld */,
 			);
 			path = compile;
+			sourceTree = "<group>";
+		};
+		72C2BBBC1A5B2E1A004BEE7A /* HIL */ = {
+			isa = PBXGroup;
+			children = (
+				72CBBE901A5C4359004E01CB /* Memory.cpp */,
+				72CBBE911A5C4359004E01CB /* Memory.h */,
+			);
+			name = HIL;
+			sourceTree = "<group>";
+		};
+		72C2BBBD1A5B2E2B004BEE7A /* Display */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Display;
+			sourceTree = "<group>";
+		};
+		72CBBE971A5C44D0004E01CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				72CBBE961A5C44D0004E01CB /* MKPi-doc */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -63,6 +121,26 @@
 		};
 /* End PBXLegacyTarget section */
 
+/* Begin PBXNativeTarget section */
+		72CBBE951A5C44D0004E01CB /* MKPi-doc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72CBBE9B1A5C44D0004E01CB /* Build configuration list for PBXNativeTarget "MKPi-doc" */;
+			buildPhases = (
+				72CBBE921A5C44D0004E01CB /* Sources */,
+				72CBBE931A5C44D0004E01CB /* Frameworks */,
+				72CBBE941A5C44D0004E01CB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MKPi-doc";
+			productName = "MKPi-doc";
+			productReference = 72CBBE961A5C44D0004E01CB /* MKPi-doc */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
 /* Begin PBXProject section */
 		726A95741A5839D6005D0695 /* Project object */ = {
 			isa = PBXProject;
@@ -71,6 +149,9 @@
 				ORGANIZATIONNAME = "Maurus Kühne";
 				TargetAttributes = {
 					726A95781A5839D6005D0695 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					72CBBE951A5C44D0004E01CB = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
 				};
@@ -83,13 +164,28 @@
 				en,
 			);
 			mainGroup = 726A95731A5839D6005D0695;
+			productRefGroup = 72CBBE971A5C44D0004E01CB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				726A95781A5839D6005D0695 /* MKPi */,
+				72CBBE951A5C44D0004E01CB /* MKPi-doc */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		72CBBE921A5C44D0004E01CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72CBBE9F1A5C44DF004E01CB /* bootstrap.s in Sources */,
+				72CBBE9E1A5C44D9004E01CB /* Memory.cpp in Sources */,
+				72CBBEA01A5C44E1004E01CB /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		726A95791A5839D6005D0695 /* Debug */ = {
@@ -187,6 +283,24 @@
 			};
 			name = Release;
 		};
+		72CBBE9C1A5C44D0004E01CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		72CBBE9D1A5C44D0004E01CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -207,6 +321,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		72CBBE9B1A5C44D0004E01CB /* Build configuration list for PBXNativeTarget "MKPi-doc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72CBBE9C1A5C44D0004E01CB /* Debug */,
+				72CBBE9D1A5C44D0004E01CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
