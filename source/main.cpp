@@ -7,6 +7,7 @@
 //
 
 #include "main.h"
+#include "Memory.h"
 #include <cstdint>
 
 extern "C" void PUT32 ( unsigned int, unsigned int );
@@ -58,10 +59,23 @@ int main() {
   return 0;
 }
 
-extern "C" void irq_handler( uint32_t value ) {
+extern "C" void svc_handler( uint32_t value ) {
   
   unsigned int ra;
   for(int i = 0; i < value; i++)
+  {
+    PUT32(GPSET0,1<<16);
+    for(ra=0;ra<0x100000;ra++) dummy(ra);
+    PUT32(GPCLR0,1<<16);
+    for(ra=0;ra<0x100000;ra++) dummy(ra);
+  }
+  interruptExecuted = true;
+}
+
+extern "C" void irq_handler( void ) {
+  
+  unsigned int ra;
+  for(int i = 0; i < 10; i++)
   {
     PUT32(GPSET0,1<<16);
     for(ra=0;ra<0x100000;ra++) dummy(ra);
