@@ -95,9 +95,9 @@ namespace HIL {
     
     char* str = "Hallo Welt";
     
-    for (int i = 0; 0 < 10; i++) {
+    for (int i = 0; i < 10; i++) {
       char c = str[i];
-      DrawCharacter(i * 10, i *10, c, 0xFF0000);
+      DrawCharacter(i * 10, 10, c, 0xFF0000);
     }
     
     return true;
