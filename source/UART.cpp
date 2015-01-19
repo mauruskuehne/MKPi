@@ -35,9 +35,12 @@ extern "C" void dummy ( unsigned int );
 
 namespace HIL {
   
+  UART* UART::_instance;
+  
   UART* UART::instance() {
     if (UART::_instance == nullptr) {
-      UART::_instance = new UART();
+      UART uart;
+      UART::_instance = &uart;
     }
     
     return UART::_instance;
