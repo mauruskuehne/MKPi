@@ -24,6 +24,7 @@ volatile void PUT4( uint32_t addr, char value ) {
   *ptr = value;
 }
 
+
 namespace HIL {
   
   extern "C" void PUT32 ( unsigned int, unsigned int );
@@ -95,10 +96,18 @@ namespace HIL {
     
     char* str = "Hallo Welt";
     
+    
+    for (int i = 0; i < 100 ; i++) {
+      for (int j = 0; j < 100; j++) {
+        put_pixel_RGB24(i, j, colour);
+      }
+    }
+    
+    /*
     for (int i = 0; i < 10; i++) {
       char c = str[i];
       DrawCharacter(i * 10, 10, c, 0xFF0000);
-    }
+    }*/
     
     return true;
   }
@@ -106,15 +115,14 @@ namespace HIL {
   
   void Framebuffer::put_pixel_RGB24(uint32_t x, uint32_t y, Colour colour)
   {
-    
-    //volatile uint32_t *ptr=0;
+    volatile uint32_t *ptr=0;
     uint32_t offset=0;
     
     offset = (y * _pitch) + (x * 3);
-    /*ptr = (uint32_t*)(_address + offset);
+    ptr = (uint32_t*)(_address + offset);
     *((uint8_t*)ptr) = colour.r;
     *((uint8_t*)(ptr+1)) = colour.g;
-    *((uint8_t*)(ptr+2)) = colour.b;*/
+    *((uint8_t*)(ptr+2)) = colour.b;
     
     
   }
@@ -148,7 +156,6 @@ namespace HIL {
           PUT4( _address + offset + 1, 0 );
           PUT4( _address + offset + 2, 0 );
         }
-        
       }
     }
   }

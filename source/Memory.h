@@ -17,6 +17,9 @@ namespace HIL {
     volatile uint32_t PhysicalToVirtualAddress( uint32_t physicalAddress);
     volatile uint32_t PhysicalToBusAddress( uint32_t physicalAddress );
     volatile uint32_t BusToPhysicalAddress( uint32_t busAddress );
+    
+    extern "C" void PUT32 ( uint32_t, uint32_t );
+    extern "C" unsigned int GET32 ( uint32_t );
   };
 }
 

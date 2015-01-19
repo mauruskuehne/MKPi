@@ -12,6 +12,7 @@
 		72CBBEA01A5C44E1004E01CB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72C103C31A5840100084D4AA /* main.cpp */; };
 		72CBBEA31A5C4C9C004E01CB /* Framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CBBEA11A5C4C9C004E01CB /* Framebuffer.cpp */; };
 		72CBBEAA1A5C5CEC004E01CB /* Mailbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CBBEA81A5C5CEC004E01CB /* Mailbox.cpp */; };
+		72E57D961A6D8E3B004B0475 /* UART.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72E57D941A6D8E3B004B0475 /* UART.cpp */; };
 		72FE6B611A5C8396007BE221 /* font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE6B5F1A5C8396007BE221 /* font.cpp */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,8 @@
 		72CBBEA81A5C5CEC004E01CB /* Mailbox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mailbox.cpp; sourceTree = "<group>"; };
 		72CBBEA91A5C5CEC004E01CB /* Mailbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mailbox.h; sourceTree = "<group>"; };
 		72CBBEAB1A5C6221004E01CB /* MailboxRequests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailboxRequests.h; sourceTree = "<group>"; };
+		72E57D941A6D8E3B004B0475 /* UART.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UART.cpp; sourceTree = "<group>"; };
+		72E57D951A6D8E3B004B0475 /* UART.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UART.h; sourceTree = "<group>"; };
 		72FE6B5F1A5C8396007BE221 /* font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font.cpp; sourceTree = "<group>"; };
 		72FE6B601A5C8396007BE221 /* font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,6 +101,8 @@
 				72CBBEA81A5C5CEC004E01CB /* Mailbox.cpp */,
 				72CBBEA91A5C5CEC004E01CB /* Mailbox.h */,
 				72CBBEAB1A5C6221004E01CB /* MailboxRequests.h */,
+				72E57D941A6D8E3B004B0475 /* UART.cpp */,
+				72E57D951A6D8E3B004B0475 /* UART.h */,
 			);
 			name = HIL;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 				72CBBE9E1A5C44D9004E01CB /* Memory.cpp in Sources */,
 				72CBBEAA1A5C5CEC004E01CB /* Mailbox.cpp in Sources */,
 				72CBBEA01A5C44E1004E01CB /* main.cpp in Sources */,
+				72E57D961A6D8E3B004B0475 /* UART.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
