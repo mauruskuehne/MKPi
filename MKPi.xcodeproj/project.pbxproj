@@ -134,7 +134,7 @@
 			buildPhases = (
 			);
 			buildToolPath = make;
-			buildWorkingDirectory = /Users/maumau/Projects/MKPi/compile;
+			buildWorkingDirectory = ./compile;
 			dependencies = (
 			);
 			name = MKPi;

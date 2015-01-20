@@ -1,10 +1,10 @@
 # can this be set globally in the xcodeproj file?
 
-CPPC=$(HOME)/Development/yagarto/yagarto-4.7.2/bin/arm-none-eabi-g++
-ASMC=$(HOME)/Development/yagarto/yagarto-4.7.2/bin/arm-none-eabi-as
-LINKER=$(HOME)/Development/yagarto/yagarto-4.7.2/bin/arm-none-eabi-g++
-OBJCOPY=$(HOME)/Development/yagarto/yagarto-4.7.2/bin/arm-none-eabi-objcopy
-OBJDUMP=$(HOME)/Development/yagarto/yagarto-4.7.2/bin/arm-none-eabi-objdump
+CPPC=/usr/local/bin/arm-none-eabi-g++
+ASMC=/usr/local/bin/arm-none-eabi-as
+LINKER=/usr/local/bin/arm-none-eabi-g++
+OBJCOPY=/usr/local/bin/arm-none-eabi-objcopy
+OBJDUMP=/usr/local/bin/arm-none-eabi-objdump
 
 SOURCE=../source
 BUILD=../build
@@ -26,13 +26,13 @@ ASM_OBJECTS=$(addprefix $(BUILD)/,$(notdir $(ASMSRC:.s=.o)))
 all: IMAGE
 
 $(BUILD)/%.o: $(SOURCE)/%.cpp
-	$(CPPC) -c -std=c++11 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles -o $@ $^
+	$(CPPC) -c -std=c++14 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles -o $@ $^
 
 $(BUILD)/%.o: $(SOURCE)/%.s
 	$(ASMC) -o $@ $^
 
 CPP: $(CPPSRC)
-	$(CPPC) -c -std=c++11 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles $(CPPSRC) -o $(CPP_OBJECTS)
+	$(CPPC) -c -std=c++14 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles $(CPPSRC) -o $(CPP_OBJECTS)
 
 ASM: $(ASMSRC)
 	$(ASMC) $(ASMSRC) -o $(ASM_OBJECTS)

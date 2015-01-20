@@ -8,8 +8,6 @@
 
 #include "Framebuffer.h"
 #include "MailboxRequests.h"
-#include <stdint.h>
-#include <string>
 
 #define CHARSIZE_X	6
 #define CHARSIZE_Y	10
