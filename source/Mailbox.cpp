@@ -7,12 +7,13 @@
 //
 
 #include "Mailbox.h"
+#include "Memory.h"
+
+using namespace HIL;
 
 extern void blink(int speed);
 namespace HIL {
-  extern "C" void PUT32 ( unsigned int, unsigned int );
-  extern "C" unsigned int GET32 ( unsigned int );
-
+  
   uint32_t read32 (uint32_t nAddress)
   {
     return *(uint32_t *) nAddress;
@@ -38,12 +39,12 @@ namespace HIL {
     {
       while(1)
       {
-        ra=GET32(mailbox+0x18);
+        ra=Memory::GET32(mailbox+0x18);
         if((ra&0x40000000)==0) break;
       }
       
       Memory::MemoryBarrier();
-      ra=GET32(mailbox+0x00);
+      ra=Memory::GET32(mailbox+0x00);
       Memory::MemoryBarrier();
       
       if((ra&0xF)==channel) break;
@@ -58,10 +59,10 @@ namespace HIL {
     mailbox=0x2000B880;
     while(1)
     {
-      if((GET32(mailbox+0x18)&0x80000000)==0) break;
+      if((Memory::GET32(mailbox+0x18)&0x80000000)==0) break;
     }
     Memory::MemoryBarrier();
-    PUT32(mailbox+0x20,value + channel);
+    Memory::PUT32(mailbox+0x20,value + channel);
     return;
   }
 }

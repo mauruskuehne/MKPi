@@ -25,9 +25,6 @@ volatile void PUT4( uint32_t addr, char value ) {
 
 namespace HIL {
   
-  extern "C" void PUT32 ( unsigned int, unsigned int );
-  extern "C" unsigned int GET32 ( unsigned int );
-  
   Framebuffer::Framebuffer() {
     _depth = 24;
   }
