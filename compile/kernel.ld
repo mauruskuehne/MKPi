@@ -1,47 +1,56 @@
-/******************************************************************************
-*	kernel.ld
-*	 by Alex Chadwick
-*
-*	A linker script for generation of raspberry pi kernel images.
-******************************************************************************/
+MEMORY
+{
+  RESERVED (r)        : ORIGIN = 0x00000000, LENGTH = 32K
+  RAM (rwx)           : ORIGIN = 0x00008000, LENGTH = 64M
+}
 
 SECTIONS {
-	/*
-	* First and formost we need the .init section, containing the code to 
-        * be run first. We allow room for the ATAGs and stack and conform to 
-        * the bootloader's expectation by putting this code at 0x8000.
-	*/
-  . = 0x8000;
+  .start : {
+    KEEP(*(.init))
+    KEEP(*(.fini))
+} > RAM = 0
 
-	.init 0x8000 : {
-    *(.interrupt)
-		*(.init)
-	}
-	
-	/* 
-	* Next we put the rest of the code.
-	*/
-	.text : {
-		*(.text)
-	}
-	
-	/* 
-	* Next we put the data.
-	*/
-	.data : {
-		*(.data)
-	}
+/**
+  *	This is the main code section.
+  *
+  **/
+.text : {
+  *(.text)
+} > RAM
 
-	/*
-	* Finally comes everything else. A fun trick here is to put all other 
-	* sections into this section, which will be discarded by default.
-	*/
+.data : {
+  *(.data)
+} > RAM
 
-  .other : {
-    *(*)
-  }
-/*
-	/DISCARD/ : {
-		*(*)
-	}*/
+.bss :
+{
+  __bss_start__ = .;
+  *(.bss)
+  *(.bss.*)
+  __bss_end__ = .;
+} > RAM
+
+.init.array : {
+  __init_array_start = .;
+  *(.init_array)
+  *(.init_array.*)
+  __init_array_end = .;
+} > RAM
+
+/* .ARM.exidx is required for exception handling. It is required only
+   for "test_cpp" applications that link in stdlib */
+.ARM.exidx : {
+  __exidx_start = .;
+  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+  __exidx_end = .;
+} >RAM
+
+/**
+  *	Currently no heap
+  **/
+
+/**
+  *	Stack starts at the top of the RAM, and moves down!
+  **/
+  __stack = ORIGIN(RAM) + LENGTH(RAM);
 }
