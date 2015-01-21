@@ -45,6 +45,7 @@ IMAGE: LINK
 	$(OBJDUMP) -D $(BUILD)/bootstrap.o > $(BUILD)/bootstrap.o.asm
 	$(OBJCOPY) $(BUILD)/bootstrap.o -O srec $(BUILD)/bootstrap.srec
 	hexdump -C $(BUILD)/kernel.elf > $(BUILD)/kernel.hex
-#	$(OBJDUMP) -D irq.o > $(BUILD)/irq.o.asm
-#	$(OBJDUMP) -D kmain.o > $(BUILD)/kmain.o.asm
-	$(OBJDUMP) -D $(BUILD)/kernel.elf > $(BUILD)/kern.elf.asm
+	$(OBJDUMP) -D -S $(BUILD)/kernel.elf > $(BUILD)/kernel.elf.asm
+
+clean:
+	rm ../build/*
