@@ -12,6 +12,8 @@
 #include "UART.h"
 #include <cstdint>
 #include <stdlib.h>
+#include "StringFunctions.h"
+#include "Errors.h"
 
 
 #define GPFSEL1 0x20200004
@@ -22,17 +24,7 @@
 
 using namespace HIL;
 
-void rebootSystem()
-{
-  const int PM_RSTC = 0x2010001c;
-  const int PM_WDOG = 0x20100024;
-  const int PM_PASSWORD = 0x5a000000;
-  const int PM_RSTC_WRCFG_FULL_RESET = 0x00000020;
-  
-  Memory::PUT32(PM_WDOG, PM_PASSWORD | 1); // timeout = 1/16th of a second? (whatever)
-  Memory::PUT32(PM_RSTC, PM_PASSWORD | PM_RSTC_WRCFG_FULL_RESET);
-  while(1);
-}
+
 
 extern "C" void dummy ( unsigned int );
 
@@ -50,17 +42,6 @@ void blink(int speed) {
   for(ra=0;ra<speed;ra++) dummy(ra);
   Memory::PUT32(GPCLR0,1<<16);
   for(ra=0;ra<speed;ra++) dummy(ra);
-}
-
-int strcmp(char* first, char* second) {
-  int pos = 0;
-  while (first[pos] != '\0') {
-    if (first[pos] != second[pos]) {
-      return 0;
-    }
-    pos++;
-  }
-  return 1;
 }
 
 volatile bool interruptExecuted = false;

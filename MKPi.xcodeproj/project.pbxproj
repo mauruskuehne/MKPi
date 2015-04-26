@@ -13,6 +13,8 @@
 		72CBBEA31A5C4C9C004E01CB /* Framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CBBEA11A5C4C9C004E01CB /* Framebuffer.cpp */; };
 		72CBBEAA1A5C5CEC004E01CB /* Mailbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CBBEA81A5C5CEC004E01CB /* Mailbox.cpp */; };
 		72E57D961A6D8E3B004B0475 /* UART.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72E57D941A6D8E3B004B0475 /* UART.cpp */; };
+		72ED27FF1AED338D0004DF73 /* Errors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72ED27FD1AED338D0004DF73 /* Errors.cpp */; };
+		72ED28031AED344F0004DF73 /* StringFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72ED28011AED344F0004DF73 /* StringFunctions.cpp */; };
 		72FE6B611A5C8396007BE221 /* font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE6B5F1A5C8396007BE221 /* font.cpp */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,10 @@
 		72CBBEAB1A5C6221004E01CB /* MailboxRequests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailboxRequests.h; sourceTree = "<group>"; };
 		72E57D941A6D8E3B004B0475 /* UART.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UART.cpp; sourceTree = "<group>"; };
 		72E57D951A6D8E3B004B0475 /* UART.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UART.h; sourceTree = "<group>"; };
+		72ED27FD1AED338D0004DF73 /* Errors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Errors.cpp; sourceTree = "<group>"; };
+		72ED27FE1AED338D0004DF73 /* Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Errors.h; sourceTree = "<group>"; };
+		72ED28011AED344F0004DF73 /* StringFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringFunctions.cpp; sourceTree = "<group>"; };
+		72ED28021AED344F0004DF73 /* StringFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringFunctions.h; sourceTree = "<group>"; };
 		72FE6B5F1A5C8396007BE221 /* font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font.cpp; sourceTree = "<group>"; };
 		72FE6B601A5C8396007BE221 /* font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +78,7 @@
 		72C103C21A583FD80084D4AA /* source */ = {
 			isa = PBXGroup;
 			children = (
+				72ED28001AED343A0004DF73 /* Strings */,
 				72C2BBBD1A5B2E2B004BEE7A /* Display */,
 				72C2BBBC1A5B2E1A004BEE7A /* HIL */,
 				72C103D91A5846790084D4AA /* bootstrap.s */,
@@ -103,6 +110,8 @@
 				72CBBEAB1A5C6221004E01CB /* MailboxRequests.h */,
 				72E57D941A6D8E3B004B0475 /* UART.cpp */,
 				72E57D951A6D8E3B004B0475 /* UART.h */,
+				72ED27FD1AED338D0004DF73 /* Errors.cpp */,
+				72ED27FE1AED338D0004DF73 /* Errors.h */,
 			);
 			name = HIL;
 			sourceTree = "<group>";
@@ -122,6 +131,15 @@
 				72CBBE961A5C44D0004E01CB /* MKPi-doc */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		72ED28001AED343A0004DF73 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				72ED28011AED344F0004DF73 /* StringFunctions.cpp */,
+				72ED28021AED344F0004DF73 /* StringFunctions.h */,
+			);
+			name = Strings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,12 +219,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72ED27FF1AED338D0004DF73 /* Errors.cpp in Sources */,
 				72CBBE9F1A5C44DF004E01CB /* bootstrap.s in Sources */,
 				72CBBEA31A5C4C9C004E01CB /* Framebuffer.cpp in Sources */,
 				72FE6B611A5C8396007BE221 /* font.cpp in Sources */,
 				72CBBE9E1A5C44D9004E01CB /* Memory.cpp in Sources */,
 				72CBBEAA1A5C5CEC004E01CB /* Mailbox.cpp in Sources */,
 				72CBBEA01A5C44E1004E01CB /* main.cpp in Sources */,
+				72ED28031AED344F0004DF73 /* StringFunctions.cpp in Sources */,
 				72E57D961A6D8E3B004B0475 /* UART.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

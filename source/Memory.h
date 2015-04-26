@@ -13,10 +13,25 @@
 
 namespace HIL {
   namespace Memory {
+    
+    struct PhysicalAddress;
+    
+    struct BusAddress {
+      uint32_t address;
+      explicit operator PhysicalAddress();
+    };
+    
+    struct PhysicalAddress {
+      uint32_t address;
+      explicit operator BusAddress();
+    };
+    
+    struct VirtualAddress {
+      uint32_t address;
+      
+    };
+    
     volatile void MemoryBarrier();
-    volatile uint32_t PhysicalToVirtualAddress( uint32_t physicalAddress);
-    volatile uint32_t PhysicalToBusAddress( uint32_t physicalAddress );
-    volatile uint32_t BusToPhysicalAddress( uint32_t busAddress );
     
     extern "C" volatile void PUT32 ( uint32_t, uint32_t );
     extern "C" volatile unsigned int GET32 ( uint32_t );
