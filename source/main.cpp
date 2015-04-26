@@ -124,7 +124,7 @@ int main() {
 #define AUX_MU_IO_REG   0x20215040
   /*uart->sendText("Hallo Welt", 10);*/
   int length = 10;
-  char* text = "Hallo Welt";
+  const char* text = "Hallo Welt";
   for(int i = 0; i < length; i++)
   {
     while(1)

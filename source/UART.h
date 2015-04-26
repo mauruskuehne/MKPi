@@ -17,8 +17,8 @@ namespace HIL {
   {
   public:
     static UART* instance();
-    void sendText(char* text);
-    void sendText(char* text, int length);
+    void sendText(const char* text);
+    void sendText(const char* text, int length);
     void sendInfiniteLoop();
     
     uint8_t readByte();

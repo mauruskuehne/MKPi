@@ -89,7 +89,7 @@ namespace HIL {
     //return true;
     //_backbuffer = (uint32_t*) malloc(3 * _xSize * _ySize);
     
-    char* str = "Hallo Welt";
+    const char* str = "Hallo Welt";
     
     
     for (int i = 0; i < 100 ; i++) {

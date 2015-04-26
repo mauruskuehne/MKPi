@@ -15,6 +15,7 @@
 		72E57D961A6D8E3B004B0475 /* UART.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72E57D941A6D8E3B004B0475 /* UART.cpp */; };
 		72ED27FF1AED338D0004DF73 /* Errors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72ED27FD1AED338D0004DF73 /* Errors.cpp */; };
 		72ED28031AED344F0004DF73 /* StringFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72ED28011AED344F0004DF73 /* StringFunctions.cpp */; };
+		72ED28061AED4F310004DF73 /* AddressTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72ED28051AED4F310004DF73 /* AddressTypes.cpp */; };
 		72FE6B611A5C8396007BE221 /* font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE6B5F1A5C8396007BE221 /* font.cpp */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		72ED27FE1AED338D0004DF73 /* Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Errors.h; sourceTree = "<group>"; };
 		72ED28011AED344F0004DF73 /* StringFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringFunctions.cpp; sourceTree = "<group>"; };
 		72ED28021AED344F0004DF73 /* StringFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringFunctions.h; sourceTree = "<group>"; };
+		72ED28051AED4F310004DF73 /* AddressTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AddressTypes.cpp; sourceTree = "<group>"; };
 		72FE6B5F1A5C8396007BE221 /* font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font.cpp; sourceTree = "<group>"; };
 		72FE6B601A5C8396007BE221 /* font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,8 +103,7 @@
 		72C2BBBC1A5B2E1A004BEE7A /* HIL */ = {
 			isa = PBXGroup;
 			children = (
-				72CBBE901A5C4359004E01CB /* Memory.cpp */,
-				72CBBE911A5C4359004E01CB /* Memory.h */,
+				72ED28041AED4F030004DF73 /* Memory */,
 				72CBBEA11A5C4C9C004E01CB /* Framebuffer.cpp */,
 				72CBBEA21A5C4C9C004E01CB /* Framebuffer.h */,
 				72CBBEA81A5C5CEC004E01CB /* Mailbox.cpp */,
@@ -140,6 +141,16 @@
 				72ED28021AED344F0004DF73 /* StringFunctions.h */,
 			);
 			name = Strings;
+			sourceTree = "<group>";
+		};
+		72ED28041AED4F030004DF73 /* Memory */ = {
+			isa = PBXGroup;
+			children = (
+				72CBBE911A5C4359004E01CB /* Memory.h */,
+				72CBBE901A5C4359004E01CB /* Memory.cpp */,
+				72ED28051AED4F310004DF73 /* AddressTypes.cpp */,
+			);
+			name = Memory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +234,7 @@
 				72CBBE9F1A5C44DF004E01CB /* bootstrap.s in Sources */,
 				72CBBEA31A5C4C9C004E01CB /* Framebuffer.cpp in Sources */,
 				72FE6B611A5C8396007BE221 /* font.cpp in Sources */,
+				72ED28061AED4F310004DF73 /* AddressTypes.cpp in Sources */,
 				72CBBE9E1A5C44D9004E01CB /* Memory.cpp in Sources */,
 				72CBBEAA1A5C5CEC004E01CB /* Mailbox.cpp in Sources */,
 				72CBBEA01A5C44E1004E01CB /* main.cpp in Sources */,

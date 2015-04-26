@@ -10,7 +10,7 @@
 #define __MKPi__Errors__
 
 
-void fatalError(char* errorMessage);
+void fatalError(const char* errorMessage);
 
 void rebootSystem();
 

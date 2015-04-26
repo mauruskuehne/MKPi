@@ -35,6 +35,7 @@ namespace HIL {
     void put_pixel_RGB24(uint32_t x, uint32_t y, Colour colour);
     void DrawCharacter(int x, int y, char c, uint32_t color);
   };
+  
 }
 
 

@@ -13,7 +13,7 @@
 
 using namespace HIL;
 
-void fatalError(char* errorMessage) {
+void fatalError(const char* errorMessage) {
   int byteCounter = 0;
   char killSignal[] = "KILLPI";
   

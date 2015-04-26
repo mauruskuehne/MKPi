@@ -155,14 +155,14 @@ namespace HIL {
     blink();
   }
   
-  void UART::sendText(char* text) {
+  void UART::sendText(const char* text) {
     for(int i = 0; text[i] != '\0'; i++)
     {
       sendByte(text[i]);
     }
   }
   
-  void UART::sendText(char* text, int length) {
+  void UART::sendText(const char* text, int length) {
     for(int i = 0; i < length; i++)
     {
       sendByte(text[i]);
