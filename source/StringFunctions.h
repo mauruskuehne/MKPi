@@ -9,8 +9,14 @@
 #ifndef __MKPi__StringFunctions__
 #define __MKPi__StringFunctions__
 
+#include <stdint.h>
 
 int strcmp(char* first, char* second);
 
+void tostr(uint32_t val, char* buffer);
+
+void concat(char* first, char* second, char* res);
+
+uint32_t strlen(char* str);
 
 #endif /* defined(__MKPi__StringFunctions__) */

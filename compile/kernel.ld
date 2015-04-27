@@ -17,9 +17,13 @@ SECTIONS {
 .text : {
   *(.text)
 } > RAM
-
+__data_rom_start__ = .;
 .data : {
+__data_start__ = .;
+
   *(.data)
+__data_end__ = .;
+
 } > RAM
 
 .bss :

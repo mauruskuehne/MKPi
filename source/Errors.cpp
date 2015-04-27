@@ -12,6 +12,7 @@
 #include "StringFunctions.h"
 
 using namespace HIL;
+using namespace HIL::Memory;
 
 void fatalError(const char* errorMessage) {
   int byteCounter = 0;
@@ -42,12 +43,12 @@ void fatalError(const char* errorMessage) {
 
 void rebootSystem()
 {
-  const int PM_RSTC = 0x2010001c;
-  const int PM_WDOG = 0x20100024;
+  PhysicalAddress PM_RSTC {0x2010001c};
+  PhysicalAddress PM_WDOG = {0x20100024};
   const int PM_PASSWORD = 0x5a000000;
   const int PM_RSTC_WRCFG_FULL_RESET = 0x00000020;
   
-  Memory::PUT32(PM_WDOG, PM_PASSWORD | 1); // timeout = 1/16th of a second? (whatever)
-  Memory::PUT32(PM_RSTC, PM_PASSWORD | PM_RSTC_WRCFG_FULL_RESET);
+  Memory::write(PM_WDOG, PM_PASSWORD | 1); // timeout = 1/16th of a second? (whatever)
+  Memory::write(PM_RSTC, PM_PASSWORD | PM_RSTC_WRCFG_FULL_RESET);
   while(1);
 }

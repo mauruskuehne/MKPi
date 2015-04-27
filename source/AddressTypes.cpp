@@ -8,8 +8,12 @@
 
 
 #include <stdint.h>
+#include <stdio.h>
 #include "Memory.h"
 #include "Errors.h"
+#include "StringFunctions.h"
+#include <cstdint>
+#include <stdlib.h>
 
 const uint32_t ARM_BUS_LOCATION = 0x40000000;
 
@@ -28,7 +32,20 @@ namespace HIL {
       } else if (address >= 0x7E000000 && address <= 0xDC000000) {
         pAddr.address = address - 0x5E000000;
       } else {
-        fatalError("could not convert from bus address to physical address");
+        
+        if(address == 0)
+          fatalError("not working :<");
+        
+        char* text ="could not convert from bus address to physical address -> ";
+        uint32_t textlen = strlen(text) - 1;
+        
+        char number[10];
+        tostr(address, number);
+        char wholeText[10 + textlen];
+        
+        concat(text, number, wholeText);
+        
+        fatalError(number);
       }
       
       return pAddr;
@@ -40,7 +57,7 @@ namespace HIL {
     }
     
     BusAddress& BusAddress::operator+=(const HIL::Memory::BusAddress& rhs) {
-      this->address += rhs.address;
+      address += rhs.address;
       return *this;
     }
     
@@ -50,7 +67,7 @@ namespace HIL {
     }
     
     BusAddress& BusAddress::operator-=(const HIL::Memory::BusAddress& rhs) {
-      this->address -= rhs.address;
+      address -= rhs.address;
       return *this;
     }
     
@@ -76,7 +93,7 @@ namespace HIL {
     }
     
     PhysicalAddress& PhysicalAddress::operator+=(const PhysicalAddress& rhs) {
-      this->address += rhs.address;
+      address += rhs.address;
       return *this;
     }
     
@@ -86,7 +103,7 @@ namespace HIL {
     }
     
     PhysicalAddress& PhysicalAddress::operator-=(const PhysicalAddress& rhs) {
-      this->address -= rhs.address;
+      address -= rhs.address;
       return *this;
     }
 
@@ -99,7 +116,7 @@ namespace HIL {
     }
     
     VirtualAddress& VirtualAddress::operator+=(const VirtualAddress& rhs) {
-      this->address += rhs.address;
+      address += rhs.address;
       return *this;
     }
     
@@ -109,7 +126,7 @@ namespace HIL {
     }
     
     VirtualAddress& VirtualAddress::operator-=(const VirtualAddress& rhs) {
-      this->address -= rhs.address;
+      address -= rhs.address;
       return *this;
     }
     

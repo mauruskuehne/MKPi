@@ -98,32 +98,27 @@ namespace HIL {
   UART::UART() {
     // Disable UART0
     
-    Memory::PUT32(UART0_CR, 0x00000000);
+    Memory::raw_write(UART0_CR, 0x00000000);
     // Setup the GPIO pin 14 && 15.
     
-    blink();
     
     // Disable pull up/down for all GPIO pins & delay for 150 cycles.
-    Memory::PUT32(GPPUD, 0x00000000);
+    Memory::raw_write(GPPUD, 0x00000000);
     delay(150);
     
-    blink();
     
     // Disable pull up/down for pin 14,15 & delay for 150 cycles.
-    Memory::PUT32(GPPUDCLK0, (1 << 14) | (1 << 15));
+    Memory::raw_write(GPPUDCLK0, (1 << 14) | (1 << 15));
     delay(150);
     
-    blink();
     
     // Write 0 to GPPUDCLK0 to make it take effect.
-    Memory::PUT32(GPPUDCLK0, 0x00000000);
+    Memory::raw_write(GPPUDCLK0, 0x00000000);
     
-    blink();
     
     // Clear pending interrupts.
-    Memory::PUT32(UART0_ICR, 0x7FF);
+    Memory::raw_write(UART0_ICR, 0x7FF);
     
-    blink();
     
     // Set integer & fractional part of baud rate.
     // Divider = UART_CLOCK/(16 * Baud)
@@ -132,27 +127,22 @@ namespace HIL {
     
     // Divider = 3000000/(16 * 115200) = 1.627 = ~1.
     // Fractional part register = (.627 * 64) + 0.5 = 40.6 = ~40.
-    Memory::PUT32(UART0_IBRD, 1);
-    Memory::PUT32(UART0_FBRD, 40);
+    Memory::raw_write(UART0_IBRD, 1);
+    Memory::raw_write(UART0_FBRD, 40);
     
-    blink();
     
     // Enable FIFO & 8 bit data transmissio (1 stop bit, no parity).
-    Memory::PUT32(UART0_LCRH, (1 << 4) | (1 << 5) | (1 << 6));
+    Memory::raw_write(UART0_LCRH, (1 << 4) | (1 << 5) | (1 << 6));
     
-    blink();
     
     // Mask all interrupts.
-    Memory::PUT32(UART0_IMSC, (1 << 1) | (1 << 4) | (1 << 5) |
+    Memory::raw_write(UART0_IMSC, (1 << 1) | (1 << 4) | (1 << 5) |
                 (1 << 6) | (1 << 7) | (1 << 8) |
                 (1 << 9) | (1 << 10));
     
-    blink();
-    
     // Enable UART0, receive & transfer part of UART.
-    Memory::PUT32(UART0_CR, (1 << 0) | (1 << 8) | (1 << 9));
+    Memory::raw_write(UART0_CR, (1 << 0) | (1 << 8) | (1 << 9));
 
-    blink();
   }
   
   void UART::sendText(const char* text) {
@@ -174,18 +164,18 @@ namespace HIL {
   
   uint8_t UART::readByte() {
     while (1) {
-      if(!(Memory::GET32(UART0_FR) & (1<<4))) break;
+      if(!(Memory::raw_read(UART0_FR) & (1<<4))) break;
     }
     
-    return Memory::GET32(UART0_DR);
+    return Memory::raw_read(UART0_DR);
   }
   
   void UART::sendByte(uint8_t byte) {
     while(1)
     {
-      if(!(Memory::GET32(UART0_FR)&(1<<5))) break;
+      if(!(Memory::raw_read(UART0_FR)&(1<<5))) break;
     }
-    Memory::PUT32(UART0_DR,byte);
+    Memory::raw_write(UART0_DR,byte);
   }
   
   void UART::sendInfiniteLoop() {
@@ -196,9 +186,9 @@ namespace HIL {
       while(1)
       {
         
-        if(Memory::GET32(UART0_FR)&0x20) break;
+        if(Memory::raw_read(UART0_FR)&0x20) break;
       }
-      Memory::PUT32(UART0_DR,0x30+(ra++&7));
+      Memory::raw_write(UART0_DR,0x30+(ra++&7));
     }
   }
   

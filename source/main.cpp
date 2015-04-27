@@ -16,51 +16,72 @@
 #include "Errors.h"
 
 
-#define GPFSEL1 0x20200004
-#define GPSET0  0x2020001C
-#define GPCLR0  0x20200028
-#define GPPUD       0x20200094
-#define GPPUDCLK0   0x20200098
+#define GPFSEL1 PhysicalAddress{0x20200004}
+#define GPSET0  PhysicalAddress{0x2020001C}
+#define GPCLR0  PhysicalAddress{0x20200028}
+#define GPPUD       PhysicalAddress{0x20200094}
+#define GPPUDCLK0   PhysicalAddress{0x20200098}
 
 using namespace HIL;
-
+using namespace HIL::Memory;
 
 
 extern "C" void dummy ( unsigned int );
 
 void blink() {
   unsigned int ra;
-  Memory::PUT32(GPSET0,1<<16);
+  Memory::write(GPSET0,1<<16);
   for(ra=0;ra<0x100000;ra++) dummy(ra);
-  Memory::PUT32(GPCLR0,1<<16);
+  Memory::write(GPCLR0,1<<16);
   for(ra=0;ra<0x100000;ra++) dummy(ra);
 }
 
 void blink(int speed) {
   unsigned int ra;
-  Memory::PUT32(GPSET0,1<<16);
+  Memory::write(GPSET0,1<<16);
   for(ra=0;ra<speed;ra++) dummy(ra);
-  Memory::PUT32(GPCLR0,1<<16);
+  Memory::write(GPCLR0,1<<16);
   for(ra=0;ra<speed;ra++) dummy(ra);
 }
+
+extern uint32_t __bss_start__;
+extern uint32_t __bss_end__;
+
+extern uint32_t __data_rom_start__;
+extern uint32_t __data_start__;
+extern uint32_t __data_end__;
 
 volatile bool interruptExecuted = false;
 
 int main() {
   unsigned int ra;
+  unsigned int rb;
+  
+  blink();
+  blink();
+  /*
+  //zero out .bss
+  for(ra=__bss_start__;ra<__bss_end__;ra+=4)
+    Memory::raw_write(ra, 0);// PUT32(ra,0);
+  */
   
   blink();
   blink();
   
   
+  //copy .data from non-volatile .text to its home where the code expects it
+  //to be.
+  for(ra=__data_start__,rb=__data_rom_start__;ra<__data_end__;ra+=4,rb+=4)
+    Memory::raw_write(ra,Memory::raw_read(rb)); //GET32(rb));
   
   
   
   //old code
-  ra=Memory::GET32(GPFSEL1);
+  ra=Memory::read(GPFSEL1);
   ra&=~(7<<18);
   ra|=1<<18;
-  Memory::PUT32(GPFSEL1,ra);
+  Memory::write(GPFSEL1,ra);
+
   
   
   blink();
@@ -79,6 +100,7 @@ int main() {
   
   int byteCounter = 0;
   char killSignal[] = "KILLPI";
+  char testSignal[] = "TESTPI";
   
   char receivedText[7];
   
@@ -103,55 +125,20 @@ int main() {
       uart->sendText("self destruct");
       rebootSystem();
     }
-  }
-  
-  /*
-  Framebuffer* buffer;
-  
-  buffer->initialize();*/
-  /*
-  blink();
-  
-  interruptExecuted = false;
-  
-  blink();
-  asm volatile( "SWI #0x00000A" );
-  blink();*/
-  return 0;
-  
-  ra=0;
-    #define AUX_MU_LSR_REG  0x20215054
-#define AUX_MU_IO_REG   0x20215040
-  /*uart->sendText("Hallo Welt", 10);*/
-  int length = 10;
-  const char* text = "Hallo Welt";
-  for(int i = 0; i < length; i++)
-  {
-    while(1)
-    {
-      blink();
-      if(Memory::GET32(AUX_MU_LSR_REG)&0x20) break;
+    if(strcmp(testSignal, receivedText)) {
+      uart->sendText("testing address conversion");
+      BusAddress adr = Memory::Locations::UART::CR; //BusAddress { 0x234 };
+      
+      char nr[10];
+      
+      tostr(adr.address, nr);
+      
+      uart->sendText("busaddress: ");
+      uart->sendText(nr);
+      
+      PhysicalAddress padr = (PhysicalAddress)adr;
     }
-    Memory::PUT32(AUX_MU_IO_REG,text[i]);
   }
-  
-  blink();
-  blink();
-  
-  uart->sendInfiniteLoop();
-  
-  
-  while (!interruptExecuted) {
-    dummy(0);
-  }
-  /*
-  while(1)
-  {
-    PUT32(GPSET0,1<<16);
-    for(ra=0;ra<0x100000;ra++) dummy(ra);
-    PUT32(GPCLR0,1<<16);
-    for(ra=0;ra<0x100000;ra++) dummy(ra);
-  }*/
   
   return 0;
 }
@@ -161,9 +148,9 @@ extern "C" void svc_handler( uint32_t value ) {
   unsigned int ra;
   for(int i = 0; i < value; i++)
   {
-    Memory::PUT32(GPSET0,1<<16);
+    Memory::write(GPSET0,1<<16);
     for(ra=0;ra<0x100000;ra++) dummy(ra);
-    Memory::PUT32(GPCLR0,1<<16);
+    Memory::write(GPCLR0,1<<16);
     for(ra=0;ra<0x100000;ra++) dummy(ra);
   }
   interruptExecuted = true;
@@ -174,9 +161,9 @@ extern "C" void irq_handler( void ) {
   unsigned int ra;
   for(int i = 0; i < 10; i++)
   {
-    Memory::PUT32(GPSET0,1<<16);
+    Memory::write(GPSET0,1<<16);
     for(ra=0;ra<0x100000;ra++) dummy(ra);
-    Memory::PUT32(GPCLR0,1<<16);
+    Memory::write(GPCLR0,1<<16);
     for(ra=0;ra<0x100000;ra++) dummy(ra);
   }
   interruptExecuted = true;
