@@ -105,7 +105,7 @@ void concat(char* first, char* second, char* res) {
   return;
 }
 
-uint32_t strlen(char* str) {
+uint32_t strlen(const char* str) {
   uint32_t val = 0;
   while(str[val] != '\0') {
     val++;

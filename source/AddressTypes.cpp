@@ -36,14 +36,14 @@ namespace HIL {
         if(address == 0)
           fatalError("not working :<");
         
-        char* text ="could not convert from bus address to physical address -> ";
+        const char* text ="could not convert from bus address to physical address -> ";
         uint32_t textlen = strlen(text) - 1;
         
         char number[10];
         tostr(address, number);
         char wholeText[10 + textlen];
         
-        concat(text, number, wholeText);
+        concat((char*)text, number, wholeText);
         
         fatalError(number);
       }
