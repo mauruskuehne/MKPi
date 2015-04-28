@@ -56,12 +56,12 @@ namespace HIL {
     }
     
     namespace Locations {
-      namespace UART {
-        BusAddress BASE =    BusAddress { .address = 0x7E201000 };
-        BusAddress DR =      BASE;
-        BusAddress RSRECR =  BASE + BusAddress{0x4};
-        BusAddress FR =      BASE + BusAddress{0x18};
-        BusAddress ILPR =    BASE + BusAddress{0x20};
+      namespace UART {/*
+        static BusAddress BASE =    BusAddress { .address = 0x7E201000 };
+        static BusAddress DR =      BASE;
+        static BusAddress RSRECR =  BASE + BusAddress{0x4};
+        static BusAddress FR =      BASE + BusAddress{0x18};
+        static BusAddress ILPR =    BASE + BusAddress{0x20};*/
         BusAddress IBRD =    BASE + BusAddress{0x24};
         BusAddress FBRD =    BASE + BusAddress{0x28};
         BusAddress LCRH =    BASE + BusAddress{0x2c};

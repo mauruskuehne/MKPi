@@ -65,11 +65,11 @@ namespace HIL {
     
     namespace Locations {
       namespace UART {
-        extern BusAddress BASE;
-        extern BusAddress DR;
-        extern BusAddress RSRECR;
-        extern BusAddress FR;
-        extern BusAddress ILPR;
+        static BusAddress BASE =    BusAddress { .address = 0x7E201000 };
+        static BusAddress DR =      BASE;
+        static BusAddress RSRECR =  BASE + BusAddress{0x4};
+        static BusAddress FR =      BASE + BusAddress{0x18};
+        static BusAddress ILPR =    BASE + BusAddress{0x20};
         extern BusAddress IBRD;
         extern BusAddress FBRD;
         extern BusAddress LCRH;

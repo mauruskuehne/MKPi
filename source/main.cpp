@@ -25,8 +25,29 @@
 using namespace HIL;
 using namespace HIL::Memory;
 
-
 extern "C" void dummy ( unsigned int );
+
+extern "C"
+{
+  extern void (**__init_array_start)();
+  extern void (**__init_array_end)();
+  
+  inline void static_init()
+  {
+    for (void (**p)() = __init_array_start; p < __init_array_end; ++p)
+      (*p)();
+  }
+}
+
+extern uint32_t __heap_start;
+extern uint32_t __heap_end;
+
+extern uint32_t __bss_start__;
+extern uint32_t __bss_end__;
+
+extern uint32_t __data_rom_start__;
+extern uint32_t __data_start__;
+extern uint32_t __data_end__;
 
 void blink() {
   unsigned int ra;
@@ -44,37 +65,17 @@ void blink(int speed) {
   for(ra=0;ra<speed;ra++) dummy(ra);
 }
 
-extern uint32_t __bss_start__;
-extern uint32_t __bss_end__;
-
-extern uint32_t __data_rom_start__;
-extern uint32_t __data_start__;
-extern uint32_t __data_end__;
-
 volatile bool interruptExecuted = false;
 
 int main() {
+  
+  static_init();
+  
   unsigned int ra;
   unsigned int rb;
   
   blink();
   blink();
-  /*
-  //zero out .bss
-  for(ra=__bss_start__;ra<__bss_end__;ra+=4)
-    Memory::raw_write(ra, 0);// PUT32(ra,0);
-  */
-  
-  blink();
-  blink();
-  
-  
-  //copy .data from non-volatile .text to its home where the code expects it
-  //to be.
-  for(ra=__data_start__,rb=__data_rom_start__;ra<__data_end__;ra+=4,rb+=4)
-    Memory::raw_write(ra,Memory::raw_read(rb)); //GET32(rb));
-  
-  
   
   //old code
   ra=Memory::read(GPFSEL1);
@@ -107,7 +108,6 @@ int main() {
   while (true) {
     uint8_t readByte = uart->readByte();
     
-    //uart->sendByte(readByte);
     if(byteCounter > 6)
       byteCounter = 0;
     
