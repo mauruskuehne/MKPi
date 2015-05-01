@@ -20,5 +20,7 @@ TEST_CASE( "strlen", "[StringFunctions]" ) {
 TEST_CASE( "strcmp", "[StringFunctions]" ) {
   
   REQUIRE(Strings::strcmp("first", "second") == 0);
-  REQUIRE(Strings::strlen("") == 0);
+  REQUIRE(Strings::strcmp("","") == 1);
+  
+  REQUIRE(Strings::strcmp("hello","hello") == 1);
 }

@@ -17,7 +17,7 @@ namespace Strings {
   
   void tostr(uint32_t val, char* buffer);
   
-  void concat(char* first, char* second, char* res);
+  void concat(const char* first, const char* second, char* res);
   
   uint32_t strlen(const char* str);
 }

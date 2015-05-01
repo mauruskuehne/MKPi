@@ -89,7 +89,7 @@ void Strings::tostr(uint32_t val, char* buffer) {
   buffer[10] = '\0';
 }
 
-void strcpy(char* in, char* out) {
+void strcpy(const char* in, char* out) {
   uint32_t val = 0;
   while(in[val] != '\0') {
     out[val] = in[val];
@@ -97,7 +97,7 @@ void strcpy(char* in, char* out) {
   }
 }
 
-void Strings::concat(char* first, char* second, char* res) {
+void Strings::concat(const char* first, const char* second, char* res) {
   uint32_t str1Len = Strings::strlen(first);
   //res = new char[str1Len + strlen(second) + 1];
   

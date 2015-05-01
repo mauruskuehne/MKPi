@@ -43,7 +43,7 @@ namespace HIL {
         Strings::tostr(address, number);
         char wholeText[10 + textlen];
         
-        Strings::concat((char*)text, number, wholeText);
+        Strings::concat((const char*)text, number, wholeText);
         
         fatalError(number);
       }
