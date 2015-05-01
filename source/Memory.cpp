@@ -54,29 +54,5 @@ namespace HIL {
       asm volatile( "mcr p15, 0, ip, c7, c10, 4" );
       asm volatile( "mcr p15, 0, ip, c7, c5, 4" );
     }
-    
-    namespace Locations {
-      namespace UART {/*
-        static BusAddress BASE =    BusAddress { .address = 0x7E201000 };
-        static BusAddress DR =      BASE;
-        static BusAddress RSRECR =  BASE + BusAddress{0x4};
-        static BusAddress FR =      BASE + BusAddress{0x18};
-        static BusAddress ILPR =    BASE + BusAddress{0x20};*/
-        BusAddress IBRD =    BASE + BusAddress{0x24};
-        BusAddress FBRD =    BASE + BusAddress{0x28};
-        BusAddress LCRH =    BASE + BusAddress{0x2c};
-        BusAddress CR =      BASE + BusAddress{ .address = 0x30};
-        BusAddress IFLS =    BASE + BusAddress{0x34};
-        BusAddress IMSC =    BASE + BusAddress{0x38};
-        BusAddress RIS =     BASE + BusAddress{0x3c};
-        BusAddress MIS =     BASE + BusAddress{0x40};
-        BusAddress ICR =     BASE + BusAddress{0x44};
-        BusAddress DMACR =   BASE + BusAddress{0x48};
-        BusAddress ITCR =    BASE + BusAddress{0x80};
-        BusAddress ITIP =    BASE + BusAddress{0x84};
-        BusAddress ITOP =    BASE + BusAddress{0x88};
-        BusAddress TDR =     BASE + BusAddress{0x8c};
-      };
-    };
   }
 }

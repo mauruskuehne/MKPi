@@ -27,17 +27,9 @@ using namespace HIL::Memory;
 
 extern "C" void dummy ( unsigned int );
 
-extern "C"
-{
-  extern void (**__init_array_start)();
-  extern void (**__init_array_end)();
-  
-  inline void static_init()
-  {
-    for (void (**p)() = __init_array_start; p < __init_array_end; ++p)
-      (*p)();
-  }
-}
+extern "C" void (*__init_array_start)();
+extern "C" void (*__init_array_end)();
+
 
 extern uint32_t __heap_start;
 extern uint32_t __heap_end;
@@ -69,8 +61,6 @@ volatile bool interruptExecuted = false;
 
 int main() {
   
-  static_init();
-  
   unsigned int ra;
   unsigned int rb;
   
@@ -82,7 +72,7 @@ int main() {
   ra&=~(7<<18);
   ra|=1<<18;
   Memory::write(GPFSEL1,ra);
-
+  
   
   
   blink();
@@ -90,6 +80,54 @@ int main() {
   
   UART* uart = UART::instance();
   
+  char nr[10];
+  
+  Strings::tostr((uint32_t)&__init_array_start, nr);
+  uart->sendText("__init_array_start");
+  uart->sendText(nr);
+  uart->sendText("\n");
+  
+  Strings::tostr((uint32_t)&__init_array_end, nr);
+  uart->sendText("__init_array_end");
+  uart->sendText(nr);
+  uart->sendText("\n");
+  
+  uint32_t init_array_length = (uint32_t)&__init_array_end - (uint32_t)&__init_array_start;
+  
+  Strings::tostr(init_array_length, nr);
+  uart->sendText("__init_array_length");
+  uart->sendText(nr);
+  uart->sendText("\n");
+  
+  for (uint32_t* address =((uint32_t*)&__init_array_start); address < (uint32_t*)&__init_array_end; address+= 1) {
+    
+    //uint32_t* addrToPtr = ((uint32_t*)&__init_array_start) + addr_diff;
+    
+    uart->sendText("address of address: ");
+    Strings::tostr((uint32_t)address, nr);
+    uart->sendText(nr);
+    uart->sendText("\n");
+    
+    uart->sendText("value of address: ");
+    Strings::tostr((uint32_t)*address, nr);
+    uart->sendText(nr);
+    uart->sendText("\n");
+    
+    
+    uint32_t addrToCall = *address;
+    
+    void (*funcPtr)();
+    
+    funcPtr = (void(*)())addrToCall;
+    
+    uart->sendText("calling initializer...");
+    Strings::tostr((uint32_t)funcPtr, nr);
+    uart->sendText(nr);
+    
+    uart->sendText("\n");
+    
+    (*funcPtr)();
+  }
   
   blink();
   blink();
