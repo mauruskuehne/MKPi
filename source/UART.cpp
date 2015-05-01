@@ -37,10 +37,13 @@ extern "C" void dummy ( unsigned int );
 extern void blink(int speed);
 extern void blink();
 
+namespace  UartMemory = Memory::Locations::UART;
+
 namespace HIL {
   //0x 7E20 0000
   //
-  enum UartMemory {
+  
+  enum GpioMemory {
     // The GPIO registers base address.
     
     PERIPHERAL_START = 0x20000000,
@@ -55,28 +58,6 @@ namespace HIL {
     // Controls actuation of pull up/down for specific GPIO pin.
     GPPUDCLK0 = (GPIO_OFFSET + 0x98),
     
-    // The base address for UART.
-    UART0_OFFSET = GPIO_OFFSET + 0x00001000,
-    
-    // The offsets for reach register for the UART.
-    UART0_DR     = (UART0_OFFSET + 0x00),
-    UART0_RSRECR = (UART0_OFFSET + 0x04),
-    UART0_FR     = (UART0_OFFSET + 0x18),
-    UART0_ILPR   = (UART0_OFFSET + 0x20),
-    UART0_IBRD   = (UART0_OFFSET + 0x24),
-    UART0_FBRD   = (UART0_OFFSET + 0x28),
-    UART0_LCRH   = (UART0_OFFSET + 0x2C),
-    UART0_CR     = (UART0_OFFSET + 0x30),
-    UART0_IFLS   = (UART0_OFFSET + 0x34),
-    UART0_IMSC   = (UART0_OFFSET + 0x38),
-    UART0_RIS    = (UART0_OFFSET + 0x3C),
-    UART0_MIS    = (UART0_OFFSET + 0x40),
-    UART0_ICR    = (UART0_OFFSET + 0x44),
-    UART0_DMACR  = (UART0_OFFSET + 0x48),
-    UART0_ITCR   = (UART0_OFFSET + 0x80),
-    UART0_ITIP   = (UART0_OFFSET + 0x84),
-    UART0_ITOP   = (UART0_OFFSET + 0x88),
-    UART0_TDR    = (UART0_OFFSET + 0x8C),
   };
 
   UART* UART::_instance;
@@ -98,7 +79,8 @@ namespace HIL {
   UART::UART() {
     // Disable UART0
     
-    Memory::raw_write(UART0_CR, 0x00000000);
+    //Memory::raw_write(UART0_CR, 0x00000000);
+    Memory::write(UartMemory::CR, 0x00000000);
     // Setup the GPIO pin 14 && 15.
     
     
@@ -117,7 +99,7 @@ namespace HIL {
     
     
     // Clear pending interrupts.
-    Memory::raw_write(UART0_ICR, 0x7FF);
+    Memory::write(UartMemory::ICR, 0x7FF);
     
     
     // Set integer & fractional part of baud rate.
@@ -127,21 +109,19 @@ namespace HIL {
     
     // Divider = 3000000/(16 * 115200) = 1.627 = ~1.
     // Fractional part register = (.627 * 64) + 0.5 = 40.6 = ~40.
-    Memory::raw_write(UART0_IBRD, 1);
-    Memory::raw_write(UART0_FBRD, 40);
-    
+    Memory::write(UartMemory::IBRD, 1);
+    Memory::write(UartMemory::FBRD, 40);
     
     // Enable FIFO & 8 bit data transmissio (1 stop bit, no parity).
-    Memory::raw_write(UART0_LCRH, (1 << 4) | (1 << 5) | (1 << 6));
-    
+    Memory::write(UartMemory::LCRH, (1 << 4) | (1 << 5) | (1 << 6));
     
     // Mask all interrupts.
-    Memory::raw_write(UART0_IMSC, (1 << 1) | (1 << 4) | (1 << 5) |
-                (1 << 6) | (1 << 7) | (1 << 8) |
-                (1 << 9) | (1 << 10));
+    Memory::write(UartMemory::IMSC, (1 << 1) | (1 << 4) | (1 << 5) |
+                  (1 << 6) | (1 << 7) | (1 << 8) |
+                  (1 << 9) | (1 << 10));
     
     // Enable UART0, receive & transfer part of UART.
-    Memory::raw_write(UART0_CR, (1 << 0) | (1 << 8) | (1 << 9));
+    Memory::write(UartMemory::CR, (1 << 0) | (1 << 8) | (1 << 9));
 
   }
   
@@ -164,33 +144,19 @@ namespace HIL {
   
   uint8_t UART::readByte() {
     while (1) {
-      if(!(Memory::raw_read(UART0_FR) & (1<<4))) break;
+      if(!(Memory::read(UartMemory::FR) & (1<<4))) break;
+      
     }
     
-    return Memory::raw_read(UART0_DR);
+    return Memory::read(UartMemory::DR);
   }
   
   void UART::sendByte(uint8_t byte) {
     while(1)
     {
-      if(!(Memory::raw_read(UART0_FR)&(1<<5))) break;
+      if(!(Memory::read(UartMemory::FR)&(1<<5))) break;
     }
-    Memory::raw_write(UART0_DR,byte);
+    Memory::write(UartMemory::DR, byte);
   }
-  
-  void UART::sendInfiniteLoop() {
-    
-    uint32_t ra = 0;
-    while(1)
-    {
-      while(1)
-      {
-        
-        if(Memory::raw_read(UART0_FR)&0x20) break;
-      }
-      Memory::raw_write(UART0_DR,0x30+(ra++&7));
-    }
-  }
-  
 }
 
