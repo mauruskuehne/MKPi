@@ -13,7 +13,7 @@
 
 namespace Strings {
   
-  int strcmp(char* first, char* second);
+  int strcmp(const char* first, const char* second);
   
   void tostr(uint32_t val, char* buffer);
   

@@ -9,7 +9,7 @@
 #include "StringFunctions.h"
 
 
-int Strings::strcmp(char* first, char* second) {
+int Strings::strcmp(const char* first,const char* second) {
   int pos = 0;
   while (first[pos] != '\0') {
     if (first[pos] != second[pos]) {

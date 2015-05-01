@@ -121,7 +121,7 @@ int main() {
     uart->sendText(receivedText, byteCounter);
     uart->sendText("\n");
     
-    if (Strings::strcmp(killSignal, receivedText)) {
+    if (Strings::strcmp(killSignal, (const char*)receivedText)) {
       uart->sendText("self destruct");
       rebootSystem();
     }
