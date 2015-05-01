@@ -10,44 +10,10 @@
 #define __MKPi__Memory__
 
 #include <stdint.h>
+#include "AddressTypes.h"
 
 namespace HIL {
   namespace Memory {
-    
-    struct PhysicalAddress;
-    
-    struct BusAddress {
-      uint32_t address;
-      explicit operator PhysicalAddress();
-      
-      BusAddress& operator+=(const BusAddress& rhs);
-      BusAddress& operator-=(const BusAddress& rhs);
-    };
-    
-    BusAddress operator+(BusAddress lhs, const BusAddress& rhs);
-    BusAddress operator-(BusAddress lhs, const BusAddress& rhs);
-    
-    struct PhysicalAddress {
-      uint32_t address;
-      explicit operator BusAddress();
-      
-      PhysicalAddress& operator+=(const PhysicalAddress& rhs);
-      PhysicalAddress& operator-=(const PhysicalAddress& rhs);
-    };
-    
-    PhysicalAddress operator+(PhysicalAddress lhs, const PhysicalAddress& rhs);
-    PhysicalAddress operator-(PhysicalAddress lhs, const PhysicalAddress& rhs);
-    
-    struct VirtualAddress {
-      uint32_t address;
-      
-      VirtualAddress& operator+=(const VirtualAddress& rhs);
-      VirtualAddress& operator-=(const VirtualAddress& rhs);
-    };
-    
-    VirtualAddress operator+(VirtualAddress lhs, const VirtualAddress& rhs);
-    VirtualAddress operator-(VirtualAddress lhs, const VirtualAddress& rhs);
-    
     
     volatile void MemoryBarrier();
     
@@ -65,25 +31,25 @@ namespace HIL {
     
     namespace Locations {
       namespace UART {
-        BusAddress BASE =    BusAddress { .address = 0x7E201000 };
-        BusAddress DR =      BASE;
-        BusAddress RSRECR =  BASE + BusAddress{0x4};
-        BusAddress FR =      BASE + BusAddress{0x18};
-        BusAddress ILPR =    BASE + BusAddress{0x20};
-        BusAddress IBRD =    BASE + BusAddress{0x24};
-        BusAddress FBRD =    BASE + BusAddress{0x28};
-        BusAddress LCRH =    BASE + BusAddress{0x2c};
-        BusAddress CR =      BASE + BusAddress{ .address = 0x30};
-        BusAddress IFLS =    BASE + BusAddress{0x34};
-        BusAddress IMSC =    BASE + BusAddress{0x38};
-        BusAddress RIS =     BASE + BusAddress{0x3c};
-        BusAddress MIS =     BASE + BusAddress{0x40};
-        BusAddress ICR =     BASE + BusAddress{0x44};
-        BusAddress DMACR =   BASE + BusAddress{0x48};
-        BusAddress ITCR =    BASE + BusAddress{0x80};
-        BusAddress ITIP =    BASE + BusAddress{0x84};
-        BusAddress ITOP =    BASE + BusAddress{0x88};
-        BusAddress TDR =     BASE + BusAddress{0x8c};
+        extern const struct BusAddress BASE;
+        extern const struct BusAddress DR;
+        extern const struct BusAddress RSRECR;
+        extern const struct BusAddress FR;
+        extern const struct BusAddress ILPR;
+        extern const struct BusAddress IBRD;
+        extern const struct BusAddress FBRD;
+        extern const struct BusAddress LCRH;
+        extern const struct BusAddress CR;
+        extern const struct BusAddress IFLS;
+        extern const struct BusAddress IMSC;
+        extern const struct BusAddress RIS;
+        extern const struct BusAddress MIS;
+        extern const struct BusAddress ICR;
+        extern const struct BusAddress DMACR;
+        extern const struct BusAddress ITCR;
+        extern const struct BusAddress ITIP;
+        extern const struct BusAddress ITOP;
+        extern const struct BusAddress TDR;
       };
     };
   };

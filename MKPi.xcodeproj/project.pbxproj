@@ -69,6 +69,7 @@
 		72ED93451AF3BD1300999B2F /* mkpi-tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "mkpi-tests"; sourceTree = BUILT_PRODUCTS_DIR; };
 		72ED934C1AF3BD3700999B2F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		72ED934F1AF3C30000999B2F /* StringFunctionsTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringFunctionsTest.cpp; sourceTree = "<group>"; };
+		72ED93521AF3DE8300999B2F /* AddressTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressTypes.h; sourceTree = "<group>"; };
 		72FE6B5F1A5C8396007BE221 /* font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font.cpp; sourceTree = "<group>"; };
 		72FE6B601A5C8396007BE221 /* font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +176,7 @@
 				72CBBE911A5C4359004E01CB /* Memory.h */,
 				72CBBE901A5C4359004E01CB /* Memory.cpp */,
 				72ED28051AED4F310004DF73 /* AddressTypes.cpp */,
+				72ED93521AF3DE8300999B2F /* AddressTypes.h */,
 			);
 			name = Memory;
 			sourceTree = "<group>";

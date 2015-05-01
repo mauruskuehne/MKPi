@@ -9,7 +9,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
-#include "Memory.h"
+#include "AddressTypes.h"
 #include "Errors.h"
 #include "StringFunctions.h"
 #include <cstdint>
