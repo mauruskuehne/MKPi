@@ -73,6 +73,16 @@ int main() {
   ra|=1<<18;
   Memory::write(GPFSEL1,ra);
   
+  blink();
+  blink();
+  
+  //initialize static variables
+  for (uint32_t* address =((uint32_t*)&__init_array_start); address < (uint32_t*)&__init_array_end; address++) {
+    uint32_t addrToCall = *address;
+    void (*funcPtr)();
+    funcPtr = (void(*)())addrToCall;
+    (*funcPtr)();
+  }
   
   
   blink();
@@ -80,55 +90,7 @@ int main() {
   
   UART* uart = UART::instance();
   
-  char nr[10];
-  
-  Strings::tostr((uint32_t)&__init_array_start, nr);
-  uart->sendText("__init_array_start");
-  uart->sendText(nr);
-  uart->sendText("\n");
-  
-  Strings::tostr((uint32_t)&__init_array_end, nr);
-  uart->sendText("__init_array_end");
-  uart->sendText(nr);
-  uart->sendText("\n");
-  
-  uint32_t init_array_length = (uint32_t)&__init_array_end - (uint32_t)&__init_array_start;
-  
-  Strings::tostr(init_array_length, nr);
-  uart->sendText("__init_array_length");
-  uart->sendText(nr);
-  uart->sendText("\n");
-  
-  for (uint32_t* address =((uint32_t*)&__init_array_start); address < (uint32_t*)&__init_array_end; address+= 1) {
-    
-    //uint32_t* addrToPtr = ((uint32_t*)&__init_array_start) + addr_diff;
-    
-    uart->sendText("address of address: ");
-    Strings::tostr((uint32_t)address, nr);
-    uart->sendText(nr);
-    uart->sendText("\n");
-    
-    uart->sendText("value of address: ");
-    Strings::tostr((uint32_t)*address, nr);
-    uart->sendText(nr);
-    uart->sendText("\n");
-    
-    
-    uint32_t addrToCall = *address;
-    
-    void (*funcPtr)();
-    
-    funcPtr = (void(*)())addrToCall;
-    
-    uart->sendText("calling initializer...");
-    Strings::tostr((uint32_t)funcPtr, nr);
-    uart->sendText(nr);
-    
-    uart->sendText("\n");
-    
-    (*funcPtr)();
-  }
-  
+
   blink();
   blink();
   
