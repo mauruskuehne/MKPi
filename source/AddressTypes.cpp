@@ -37,13 +37,13 @@ namespace HIL {
           fatalError("not working :<");
         
         const char* text ="could not convert from bus address to physical address -> ";
-        uint32_t textlen = strlen(text) - 1;
+        uint32_t textlen = Strings::strlen(text) - 1;
         
         char number[10];
-        tostr(address, number);
+        Strings::tostr(address, number);
         char wholeText[10 + textlen];
         
-        concat((char*)text, number, wholeText);
+        Strings::concat((char*)text, number, wholeText);
         
         fatalError(number);
       }

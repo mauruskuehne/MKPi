@@ -9,7 +9,7 @@
 #include "StringFunctions.h"
 
 
-int strcmp(char* first, char* second) {
+int Strings::strcmp(char* first, char* second) {
   int pos = 0;
   while (first[pos] != '\0') {
     if (first[pos] != second[pos]) {
@@ -57,9 +57,11 @@ char charForValue(uint8_t value) {
       return 'F';
       
   }
+  
+  return '_';
 }
 
-void tostr(uint32_t val, char* buffer) {
+void Strings::tostr(uint32_t val, char* buffer) {
   //buffer = new char[11];
   
   uint32_t halfByteMask = 0x0000000F;
@@ -95,8 +97,8 @@ void strcpy(char* in, char* out) {
   }
 }
 
-void concat(char* first, char* second, char* res) {
-  uint32_t str1Len = strlen(first);
+void Strings::concat(char* first, char* second, char* res) {
+  uint32_t str1Len = Strings::strlen(first);
   //res = new char[str1Len + strlen(second) + 1];
   
   
@@ -105,7 +107,7 @@ void concat(char* first, char* second, char* res) {
   return;
 }
 
-uint32_t strlen(const char* str) {
+uint32_t Strings::strlen(const char* str) {
   uint32_t val = 0;
   while(str[val] != '\0') {
     val++;

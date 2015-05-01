@@ -121,17 +121,17 @@ int main() {
     uart->sendText(receivedText, byteCounter);
     uart->sendText("\n");
     
-    if (strcmp(killSignal, receivedText)) {
+    if (Strings::strcmp(killSignal, receivedText)) {
       uart->sendText("self destruct");
       rebootSystem();
     }
-    if(strcmp(testSignal, receivedText)) {
+    if(Strings::strcmp(testSignal, receivedText)) {
       uart->sendText("testing address conversion");
       BusAddress adr = Memory::Locations::UART::CR; //BusAddress { 0x234 };
       
       char nr[10];
       
-      tostr(adr.address, nr);
+      Strings::tostr(adr.address, nr);
       
       uart->sendText("busaddress: ");
       uart->sendText(nr);

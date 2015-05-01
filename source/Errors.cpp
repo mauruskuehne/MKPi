@@ -34,7 +34,7 @@ void fatalError(const char* errorMessage) {
     
     receivedText[byteCounter++] = readByte;
     
-    if (strcmp(killSignal, receivedText)) {
+    if (Strings::strcmp(killSignal, receivedText)) {
       uart->sendText("self destruct");
       rebootSystem();
     }
