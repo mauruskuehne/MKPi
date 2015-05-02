@@ -38,28 +38,10 @@ extern void blink(int speed);
 extern void blink();
 
 namespace  UartMemory = Memory::Locations::UART;
+namespace  GpioMemory = Memory::Locations::GPIO;
 
 namespace HIL {
-  //0x 7E20 0000
-  //
   
-  enum GpioMemory {
-    // The GPIO registers base address.
-    
-    PERIPHERAL_START = 0x20000000,
-    
-    GPIO_OFFSET = PERIPHERAL_START + 0x00200000,
-    
-    // The offsets for reach register.
-    
-    // Controls actuation of pull up/down to ALL GPIO pins.
-    GPPUD = (GPIO_OFFSET + 0x94),
-    
-    // Controls actuation of pull up/down for specific GPIO pin.
-    GPPUDCLK0 = (GPIO_OFFSET + 0x98),
-    
-  };
-
   UART* UART::_instance;
   
   UART* UART::instance() {
@@ -79,24 +61,21 @@ namespace HIL {
   UART::UART() {
     // Disable UART0
     
-    //Memory::raw_write(UART0_CR, 0x00000000);
     Memory::write(UartMemory::CR, 0x00000000);
     // Setup the GPIO pin 14 && 15.
     
     
     // Disable pull up/down for all GPIO pins & delay for 150 cycles.
-    Memory::raw_write(GPPUD, 0x00000000);
+    Memory::write(GpioMemory::GPPUD, 0x00000000);
     delay(150);
     
-    
     // Disable pull up/down for pin 14,15 & delay for 150 cycles.
-    Memory::raw_write(GPPUDCLK0, (1 << 14) | (1 << 15));
+    Memory::write(GpioMemory::GPPUDCLK0, (1 << 14) | (1 << 15));
     delay(150);
     
     
     // Write 0 to GPPUDCLK0 to make it take effect.
-    Memory::raw_write(GPPUDCLK0, 0x00000000);
-    
+    Memory::write(GpioMemory::GPPUDCLK0, 0x00000000);
     
     // Clear pending interrupts.
     Memory::write(UartMemory::ICR, 0x7FF);

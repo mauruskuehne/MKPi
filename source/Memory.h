@@ -30,6 +30,38 @@ namespace HIL {
     void raw_write(uint32_t addr, uint32_t val);
     
     namespace Locations {
+      namespace GPIO {
+        extern const struct BusAddress BASE;
+        extern const struct BusAddress GPFSEL0;
+        extern const struct BusAddress GPFSEL1;
+        extern const struct BusAddress GPFSEL2;
+        extern const struct BusAddress GPFSEL3;
+        extern const struct BusAddress GPFSEL4;
+        extern const struct BusAddress GPFSEL5;
+        extern const struct BusAddress GPSET0;
+        extern const struct BusAddress GPSET1;
+        extern const struct BusAddress GPCLR0;
+        extern const struct BusAddress GPCLR1;
+        extern const struct BusAddress GPLEV0;
+        extern const struct BusAddress GPLEV1;
+        extern const struct BusAddress GPEDS0;
+        extern const struct BusAddress GPEDS1;
+        extern const struct BusAddress GPREN0;
+        extern const struct BusAddress GPREN1;
+        extern const struct BusAddress GPFEN0;
+        extern const struct BusAddress GPFEN1;
+        extern const struct BusAddress GPHEN0;
+        extern const struct BusAddress GPHEN1;
+        extern const struct BusAddress GPLEN0;
+        extern const struct BusAddress GPLEN1;
+        extern const struct BusAddress GPAREN0;
+        extern const struct BusAddress GPAREN1;
+        extern const struct BusAddress GPAFEN0;
+        extern const struct BusAddress GPAFEN1;
+        extern const struct BusAddress GPPUD;
+        extern const struct BusAddress GPPUDCLK0;
+        extern const struct BusAddress GPPUDCLK1;
+      }
       namespace UART {
         extern const struct BusAddress BASE;
         extern const struct BusAddress DR;

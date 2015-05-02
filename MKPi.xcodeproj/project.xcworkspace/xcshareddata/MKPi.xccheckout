@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>25652D36-57A1-43B3-985F-A92B07617A4D</string>
 	<key>IDESourceControlProjectName</key>
-	<string>MKPi</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>27E1EDD2949EA7DEB033E9C9F0704D1D2A2AE37F</key>
 		<string>https://github.com/mauruskuehne/MKPi.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>MKPi.xcodeproj</string>
+	<string>MKPi.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>27E1EDD2949EA7DEB033E9C9F0704D1D2A2AE37F</key>
