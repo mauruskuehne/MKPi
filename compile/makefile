@@ -20,13 +20,15 @@ LINKSCRIPT=kernel.ld
 CPP_OBJECTS=$(addprefix $(BUILD)/,$(notdir $(CPPSRC:.cpp=.o)))
 ASM_OBJECTS=$(addprefix $(BUILD)/,$(notdir $(ASMSRC:.s=.o)))
 
+GIT_VERSION := $(shell git describe --abbrev=4 --dirty --always --tags)
+
 
 ###### TARGETS
 
 all: IMAGE
 
 $(BUILD)/%.o: $(SOURCE)/%.cpp
-	$(CPPC) -c -std=c++14 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles -o $@ $^
+	$(CPPC) -c -std=c++14 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles -DVERSION=\"$(GIT_VERSION)\" -o $@ $^
 
 $(BUILD)/%.o: $(SOURCE)/%.s
 	$(ASMC) -o $@ $^

@@ -104,6 +104,11 @@ namespace HIL {
 
   }
   
+  void UART::writeLine(const char *text) {
+    sendText(text);
+    sendByte('\n');
+  }
+  
   void UART::sendText(const char* text) {
     for(int i = 0; text[i] != '\0'; i++)
     {

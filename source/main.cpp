@@ -61,21 +61,6 @@ volatile bool interruptExecuted = false;
 
 int main() {
   
-  unsigned int ra;
-  unsigned int rb;
-  
-  blink();
-  blink();
-  
-  //old code
-  ra=Memory::read(GPFSEL1);
-  ra&=~(7<<18);
-  ra|=1<<18;
-  Memory::write(GPFSEL1,ra);
-  
-  blink();
-  blink();
-  
   //initialize static variables
   for (uint32_t* address =((uint32_t*)&__init_array_start); address < (uint32_t*)&__init_array_end; address++) {
     uint32_t addrToCall = *address;
@@ -84,17 +69,14 @@ int main() {
     (*funcPtr)();
   }
   
-  
-  blink();
-  blink();
-  
   UART* uart = UART::instance();
   
-
-  blink();
-  blink();
   
-  uart->sendText("foo bar?");
+  uart->sendByte('\n');
+  uart->sendByte('\n');
+  uart->sendText("MKPi (rev ");
+  uart->sendText(VERSION);
+  uart->writeLine(")");
   
   blink();
   blink();

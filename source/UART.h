@@ -17,6 +17,7 @@ namespace HIL {
   {
   public:
     static UART* instance();
+    void writeLine(const char* text);
     void sendText(const char* text);
     void sendText(const char* text, int length);
     
