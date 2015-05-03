@@ -9,10 +9,11 @@
 #include "Errors.h"
 
 #include "UART.h"
-#include "StringFunctions.h"
+#include "System.h"
 
 using namespace HIL;
 using namespace HIL::Memory;
+using namespace System;
 
 void fatalError(const char* errorMessage) {
   int byteCounter = 0;

@@ -11,9 +11,11 @@
 #include <stdio.h>
 #include "AddressTypes.h"
 #include "Errors.h"
-#include "StringFunctions.h"
+#include "System.h"
 #include <cstdint>
 #include <stdlib.h>
+
+using namespace System;
 
 const uint32_t ARM_BUS_LOCATION = 0x40000000;
 

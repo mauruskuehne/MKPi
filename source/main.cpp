@@ -14,7 +14,8 @@
 #include <stdlib.h>
 #include "StringFunctions.h"
 #include "Errors.h"
-
+#include "ArrayList.h"
+#include "System.h"
 
 #define GPFSEL1 PhysicalAddress{0x20200004}
 #define GPSET0  PhysicalAddress{0x2020001C}
@@ -24,6 +25,7 @@
 
 using namespace HIL;
 using namespace HIL::Memory;
+using namespace System;
 
 extern "C" void dummy ( unsigned int );
 
@@ -58,6 +60,7 @@ void blink(int speed) {
 }
 
 volatile bool interruptExecuted = false;
+
 
 int main() {
   
@@ -108,17 +111,10 @@ int main() {
       rebootSystem();
     }
     if(Strings::strcmp(testSignal, receivedText)) {
-      uart->sendText("testing address conversion");
-      BusAddress adr = Memory::Locations::UART::CR; //BusAddress { 0x234 };
       
-      char nr[10];
-      
-      Strings::tostr(adr.address, nr);
-      
-      uart->sendText("busaddress: ");
-      uart->sendText(nr);
-      
-      PhysicalAddress padr = (PhysicalAddress)adr;
+      //char * c = new char[50];
+      ArrayList<uint32_t>* _arrlst = new ArrayList<uint32_t>();
+      _arrlst->add(30);
     }
   }
   

@@ -11,16 +11,20 @@
 
 #include <stdint.h>
 
-namespace Strings {
+namespace System {
   
-  int strcmp(const char* first, const char* second);
   
-  void tostr(uint32_t val, char* buffer);
+  namespace Strings {
+    
+    int strcmp(const char* first, const char* second);
+    
+    void tostr(uint32_t val, char* buffer);
+    
+    void concat(const char* first, const char* second, char* res);
+    
+    uint32_t strlen(const char* str);
+  }
   
-  void concat(const char* first, const char* second, char* res);
-  
-  uint32_t strlen(const char* str);
 }
-
 
 #endif /* defined(__MKPi__StringFunctions__) */
