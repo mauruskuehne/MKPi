@@ -112,6 +112,8 @@ int main() {
     }
     if(Strings::strcmp(testSignal, receivedText)) {
       
+      printf("hello world");
+      
       //char * c = new char[50];
       ArrayList<uint32_t>* _arrlst = new ArrayList<uint32_t>();
       _arrlst->add(30);
