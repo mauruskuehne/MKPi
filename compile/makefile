@@ -40,7 +40,7 @@ ASM: $(ASMSRC)
 	$(ASMC) $(ASMSRC) -o $(ASM_OBJECTS)
 
 LINK: $(CPP_OBJECTS) $(ASM_OBJECTS)
-	$(LINKER) -nostdlib -nostartfiles -O2 -T $(LINKSCRIPT) $(ASM_OBJECTS) $(CPP_OBJECTS) -L/Users/maumau/Projects/MKPi/external/newlib/arm-none-eabi/armv6-m/newlib -lc -o $(BUILD)/kernel.elf
+	$(LINKER) -nostdlib -nostartfiles -O2 -T $(LINKSCRIPT) $(ASM_OBJECTS) $(CPP_OBJECTS) -L/Users/maumau/Projects/MKPi/external/newlib/arm-none-eabi/armv6-m/newlib -lgcc -lc -lgcc -o $(BUILD)/kernel.elf
 
 IMAGE: LINK
 	$(OBJCOPY) $(BUILD)/kernel.elf -O binary $(BUILD)/kernel.img
