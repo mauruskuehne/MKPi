@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		721DFCF41B04AD3C004AC11F /* newlib_syscalls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 721DFCF21B04AD3C004AC11F /* newlib_syscalls.cpp */; };
 		72CBBE9E1A5C44D9004E01CB /* Memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CBBE901A5C4359004E01CB /* Memory.cpp */; };
 		72CBBE9F1A5C44DF004E01CB /* bootstrap.s in Sources */ = {isa = PBXBuildFile; fileRef = 72C103D91A5846790084D4AA /* bootstrap.s */; };
 		72CBBEA01A5C44E1004E01CB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72C103C31A5840100084D4AA /* main.cpp */; };
@@ -47,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		721DFCF11B04A97E004AC11F /* compile_newlib.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = compile_newlib.sh; sourceTree = "<group>"; };
+		721DFCF21B04AD3C004AC11F /* newlib_syscalls.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = newlib_syscalls.cpp; sourceTree = "<group>"; };
+		721DFCF31B04AD3C004AC11F /* newlib_syscalls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newlib_syscalls.h; sourceTree = "<group>"; };
 		72C103C31A5840100084D4AA /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		72C103C41A5840100084D4AA /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		72C103D91A5846790084D4AA /* bootstrap.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = bootstrap.s; sourceTree = "<group>"; };
@@ -184,9 +187,11 @@
 			isa = PBXGroup;
 			children = (
 				72ED28001AED343A0004DF73 /* Strings */,
-				72D23CC11AF53984001E38AE /* NewOperator.cpp */,
 				72D23CC21AF53984001E38AE /* NewOperator.h */,
+				72D23CC11AF53984001E38AE /* NewOperator.cpp */,
 				72D196701AF61B870012148F /* System.h */,
+				721DFCF31B04AD3C004AC11F /* newlib_syscalls.h */,
+				721DFCF21B04AD3C004AC11F /* newlib_syscalls.cpp */,
 			);
 			name = System;
 			sourceTree = "<group>";
@@ -331,6 +336,7 @@
 				72D23CC31AF53984001E38AE /* NewOperator.cpp in Sources */,
 				72CBBEA31A5C4C9C004E01CB /* Framebuffer.cpp in Sources */,
 				72FE6B611A5C8396007BE221 /* font.cpp in Sources */,
+				721DFCF41B04AD3C004AC11F /* newlib_syscalls.cpp in Sources */,
 				72ED28061AED4F310004DF73 /* AddressTypes.cpp in Sources */,
 				72CBBE9E1A5C44D9004E01CB /* Memory.cpp in Sources */,
 				72D23CBF1AF52C76001E38AE /* ArrayList.cpp in Sources */,
