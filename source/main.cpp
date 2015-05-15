@@ -74,49 +74,32 @@ int main() {
   
   UART* uart = UART::instance();
   
-  
-  uart->sendByte('\n');
-  uart->sendByte('\n');
-  uart->sendText("MKPi (rev ");
-  uart->sendText(VERSION);
-  uart->writeLine(")");
+  printf("\n\nMKPi (rev %s)\n", VERSION);
   
   blink();
   blink();
+  
+  printf("oh gosh\n");
   
   int byteCounter = 0;
   char killSignal[] = "KILLPI";
   char testSignal[] = "TESTPI";
   
-  char receivedText[7];
-  
   while (true) {
-    uint8_t readByte = uart->readByte();
+    char buffer[1024];
+    printf("enter something! ");
+    scanf("%s", &buffer);
     
-    if(byteCounter > 6)
-      byteCounter = 0;
+    printf(buffer);
     
-    uart->sendText("\nReceived character: ");
-    uart->sendByte(readByte);
-    uart->sendByte('\n');
-    
-    receivedText[byteCounter++] = readByte;
-    
-    uart->sendText("\ncomplete received text: ");
-    uart->sendText(receivedText, byteCounter);
-    uart->sendText("\n");
-    
-    if (Strings::strcmp(killSignal, (const char*)receivedText)) {
-      uart->sendText("self destruct");
+    if(Strings::strcmp(killSignal, buffer)) {
+      printf("self destruct");
       rebootSystem();
-    }
-    if(Strings::strcmp(testSignal, receivedText)) {
+    } else if (Strings::strcmp(testSignal, buffer)) {
       
       printf("hello world");
-      
-      //char * c = new char[50];
-      ArrayList<uint32_t>* _arrlst = new ArrayList<uint32_t>();
-      _arrlst->add(30);
+    } else {
+      printf("didn't recognize command");
     }
   }
   
