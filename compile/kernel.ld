@@ -52,13 +52,8 @@ __data_end__ = .;
 .other : {
   *(*)
 } > RAM
-/*
-.heap : {
-  __heap_start = .;
-  . = . + 32M;
-  __heap_end = .;
-} > RAM
-*/
+__heap_start = .;
+
 /**
   *	Stack starts at the top of the RAM, and moves down!
   **/

@@ -10,7 +10,6 @@
 
 #include "UART.h"
 #include "System.h"
-#include <unwind.h>
 
 using namespace HIL;
 using namespace HIL::Memory;
@@ -20,8 +19,6 @@ extern void blink();
 void fatalError(const char* errorMessage) {
   printf(errorMessage);
 
-  
-  
   while (true) {
     
     printf("\nsystem failed with a fatal error.\n");

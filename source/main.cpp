@@ -31,8 +31,6 @@ extern "C" void (*__init_array_start)();
 extern "C" void (*__init_array_end)();
 
 
-extern uint32_t __heap_start;
-extern uint32_t __heap_end;
 
 extern uint32_t __bss_start__;
 extern uint32_t __bss_end__;

@@ -7,9 +7,19 @@
 //
 
 #include "newlib_syscalls.h"
+#include <cstdint>
 #include <stdlib.h>
+#include <stdio.h>
 #include "UART.h"
 #include <sys/stat.h>
+#include "Errors.h"
+
+extern void blink();
+extern void rebootSystem();
+
+void intToChars(uint32_t val, char* arr, int len) {
+  snprintf(arr, len, "%#08x", val);
+}
 
 using namespace HIL;
 
@@ -17,23 +27,10 @@ extern "C" int _close(int file) {
   return -1;
 }
 
+extern "C" uint32_t* __heap_start;
+static uint32_t _current_heap_end = 0;
 extern "C" void* _sbrk(int incr) {
-  /*extern char _end;		/* Defined by the linker *//*
-  static char *heap_end;
-  char *prev_heap_end;
-  
-  if (heap_end == 0) {
-    heap_end = &_end;
-  }
-  prev_heap_end = heap_end;
-  if (heap_end + incr > stack_ptr) {
-    write (1, "Heap and stack collision\n", 25);
-    abort ();
-  }
-  
-  heap_end += incr;
-  return (caddr_t) prev_heap_end;*/
-  return 0;
+    _current_heap_end += incr;
 }
 
 extern "C" int _write(int file, char *ptr, int len) {
@@ -68,4 +65,16 @@ extern "C" int _read(int file, char *ptr, int len) {
     }
   }
   return i + 1;
+}
+
+extern "C" void _exit() {
+  
+}
+
+extern "C" int _getpid() {
+  return 0;
+}
+
+extern "C" int _kill(int pid, int sig) {
+  return 0;
 }

@@ -25,4 +25,10 @@ extern "C" int _lseek(int file, int ptr, int dir);
 
 extern "C" int _read(int file, char *ptr, int len);
 
+extern "C" void _exit();
+
+extern "C" int _getpid();
+
+extern "C" int _kill(int pid, int sig);
+
 #endif /* defined(__MKPi__newlib_syscalls__) */
