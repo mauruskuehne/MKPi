@@ -8,13 +8,12 @@
 
 #include "Errors.h"
 
-#include "UART.h"
 #include "System.h"
+#include "HIL.h"
 
 using namespace HIL;
 using namespace HIL::Memory;
 
-extern void blink();
 
 void fatalError(const char* errorMessage) {
   printf(errorMessage);
@@ -30,7 +29,8 @@ void fatalError(const char* errorMessage) {
     
     if(strcasecmp("KILLPI", buffer) == 0) {
       printf("self destruct\n");
-      blink();
+      ActLed* led = ActLed::instance();
+      led->blink();
       rebootSystem();
     }
   }

@@ -12,5 +12,8 @@
 #include "NewOperator.h"
 #include <string.h>
 #include <strings.h>
+#include <cstdint>
+#include <stdlib.h>
+#include <stdio.h>
 
 #endif

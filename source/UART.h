@@ -11,6 +11,7 @@
 
 
 #include "Memory.h"
+#include "HIL.h"
 
 namespace HIL {
   class UART
@@ -28,7 +29,7 @@ namespace HIL {
     UART();
     static UART* _instance;
   };
-
+  
 }
 
 #endif /* defined(__MKPi__UART__) */

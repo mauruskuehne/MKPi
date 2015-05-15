@@ -34,8 +34,6 @@ extern "C" void dummy ( unsigned int );
 #define AUX_MU_STAT_REG 0x20215064
 #define AUX_MU_BAUD_REG 0x20215068
 
-extern void blink(int speed);
-extern void blink();
 
 namespace  UartMemory = Memory::Locations::UART;
 namespace  GpioMemory = Memory::Locations::GPIO;
