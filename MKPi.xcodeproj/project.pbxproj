@@ -17,10 +17,8 @@
 		72D23CC31AF53984001E38AE /* NewOperator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72D23CC11AF53984001E38AE /* NewOperator.cpp */; };
 		72E57D961A6D8E3B004B0475 /* UART.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72E57D941A6D8E3B004B0475 /* UART.cpp */; };
 		72ED27FF1AED338D0004DF73 /* Errors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72ED27FD1AED338D0004DF73 /* Errors.cpp */; };
-		72ED28031AED344F0004DF73 /* StringFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72ED28011AED344F0004DF73 /* StringFunctions.cpp */; };
 		72ED28061AED4F310004DF73 /* AddressTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72ED28051AED4F310004DF73 /* AddressTypes.cpp */; };
 		72ED934D1AF3BD3C00999B2F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72ED934C1AF3BD3700999B2F /* main.cpp */; };
-		72ED934E1AF3C2C800999B2F /* StringFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72ED28011AED344F0004DF73 /* StringFunctions.cpp */; };
 		72ED93511AF3C30000999B2F /* StringFunctionsTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72ED934F1AF3C30000999B2F /* StringFunctionsTest.cpp */; };
 		72FE6B611A5C8396007BE221 /* font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE6B5F1A5C8396007BE221 /* font.cpp */; };
 /* End PBXBuildFile section */
@@ -73,8 +71,6 @@
 		72E57D951A6D8E3B004B0475 /* UART.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UART.h; sourceTree = "<group>"; };
 		72ED27FD1AED338D0004DF73 /* Errors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Errors.cpp; sourceTree = "<group>"; };
 		72ED27FE1AED338D0004DF73 /* Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Errors.h; sourceTree = "<group>"; };
-		72ED28011AED344F0004DF73 /* StringFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringFunctions.cpp; sourceTree = "<group>"; };
-		72ED28021AED344F0004DF73 /* StringFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringFunctions.h; sourceTree = "<group>"; };
 		72ED28051AED4F310004DF73 /* AddressTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AddressTypes.cpp; sourceTree = "<group>"; };
 		72ED93401AF3BCC900999B2F /* catch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
 		72ED93451AF3BD1300999B2F /* mkpi-tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "mkpi-tests"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,7 +182,6 @@
 		72D23CC01AF5394B001E38AE /* System */ = {
 			isa = PBXGroup;
 			children = (
-				72ED28001AED343A0004DF73 /* Strings */,
 				72D23CC21AF53984001E38AE /* NewOperator.h */,
 				72D23CC11AF53984001E38AE /* NewOperator.cpp */,
 				72D196701AF61B870012148F /* System.h */,
@@ -194,15 +189,6 @@
 				721DFCF21B04AD3C004AC11F /* newlib_syscalls.cpp */,
 			);
 			name = System;
-			sourceTree = "<group>";
-		};
-		72ED28001AED343A0004DF73 /* Strings */ = {
-			isa = PBXGroup;
-			children = (
-				72ED28011AED344F0004DF73 /* StringFunctions.cpp */,
-				72ED28021AED344F0004DF73 /* StringFunctions.h */,
-			);
-			name = Strings;
 			sourceTree = "<group>";
 		};
 		72ED28041AED4F030004DF73 /* Memory */ = {
@@ -342,7 +328,6 @@
 				72D23CBF1AF52C76001E38AE /* ArrayList.cpp in Sources */,
 				72CBBEAA1A5C5CEC004E01CB /* Mailbox.cpp in Sources */,
 				72CBBEA01A5C44E1004E01CB /* main.cpp in Sources */,
-				72ED28031AED344F0004DF73 /* StringFunctions.cpp in Sources */,
 				72E57D961A6D8E3B004B0475 /* UART.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,7 +336,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72ED934E1AF3C2C800999B2F /* StringFunctions.cpp in Sources */,
 				72ED934D1AF3BD3C00999B2F /* main.cpp in Sources */,
 				72ED93511AF3C30000999B2F /* StringFunctionsTest.cpp in Sources */,
 			);

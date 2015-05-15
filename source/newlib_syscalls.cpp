@@ -10,7 +10,6 @@
 #include <stdlib.h>
 #include "UART.h"
 #include <sys/stat.h>
-#include "StringFunctions.h"
 
 using namespace HIL;
 

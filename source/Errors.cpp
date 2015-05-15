@@ -10,33 +10,30 @@
 
 #include "UART.h"
 #include "System.h"
+#include <unwind.h>
 
 using namespace HIL;
 using namespace HIL::Memory;
-using namespace System;
+
+extern void blink();
 
 void fatalError(const char* errorMessage) {
-  int byteCounter = 0;
-  char killSignal[] = "KILLPI";
+  printf(errorMessage);
+
   
-  char receivedText[7];
-  
-  UART* uart = UART::instance();
-  
-  uart->sendText(errorMessage);
   
   while (true) {
-    uint8_t readByte = uart->readByte();
     
-    if(byteCounter > 6)
-      byteCounter = 0;
+    printf("\nsystem failed with a fatal error.\n");
+    printf("enter KILLPI to reboot.\n");
     
-    uart->sendByte(readByte);
+    char buffer[1024];
+    printf("> ");
+    scanf("%s", &buffer);
     
-    receivedText[byteCounter++] = readByte;
-    
-    if (Strings::strcmp(killSignal, (const char*)receivedText)) {
-      uart->sendText("self destruct");
+    if(strcasecmp("KILLPI", buffer) == 0) {
+      printf("self destruct\n");
+      blink();
       rebootSystem();
     }
   }

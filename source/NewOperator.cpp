@@ -17,11 +17,8 @@ void* operator new (std::size_t size) throw (std::bad_alloc) {
   
   UART* uart = UART::instance();
   
-  char chrSize[10];
-  System::Strings::tostr(size, chrSize);
-  uart->sendText("should allocate space: ");
-  uart->sendText(chrSize, 10);
-  uart->sendByte('\n');
+  printf("should allocate space: %#010x\n", size);
+  
 }
 
 namespace System {

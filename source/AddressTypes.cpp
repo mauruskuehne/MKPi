@@ -15,8 +15,6 @@
 #include <cstdint>
 #include <stdlib.h>
 
-using namespace System;
-
 const uint32_t ARM_BUS_LOCATION = 0x40000000;
 
 const uint32_t SDRAM_SIZE = 1024* 1024 * 256;
@@ -34,20 +32,9 @@ namespace HIL {
       } else if (address >= 0x7E000000 && address <= 0xDC000000) {
         pAddr.address = address - 0x5E000000;
       } else {
-        
-        if(address == 0)
-          fatalError("not working :<");
-        
-        const char* text ="could not convert from bus address to physical address -> ";
-        uint32_t textlen = Strings::strlen(text) - 1;
-        
-        char number[10];
-        Strings::tostr(address, number);
-        char wholeText[10 + textlen];
-        
-        Strings::concat((const char*)text, number, wholeText);
-        
-        fatalError(number);
+        char txt[80];
+        sprintf(txt, "could not convert from bus address to physical address -> %#010x", address);
+        fatalError(txt);
       }
       
       return pAddr;
@@ -83,7 +70,9 @@ namespace HIL {
       }else if (address >= 0x20000000 && address <= 0x20FFFFFF) {
         bAddr.address = address + 0x5E000000;
       } else {
-        fatalError("could not convert from physical address to bus address");
+        char txt[80];
+        sprintf(txt, "could not convert from physical address to bus address -> %#010x", address);
+        fatalError(txt);
       }
       
       return bAddr;

@@ -12,11 +12,10 @@
 #include "UART.h"
 #include <cstdint>
 #include <stdlib.h>
-#include "StringFunctions.h"
 #include "Errors.h"
 #include "ArrayList.h"
 #include "System.h"
-#include "string.h"
+#include <string.h>
 #define GPFSEL1 PhysicalAddress{0x20200004}
 #define GPSET0  PhysicalAddress{0x2020001C}
 #define GPCLR0  PhysicalAddress{0x20200028}
@@ -25,7 +24,6 @@
 
 using namespace HIL;
 using namespace HIL::Memory;
-using namespace System;
 
 extern "C" void dummy ( unsigned int );
 
@@ -80,20 +78,21 @@ int main() {
   blink();
   
   int byteCounter = 0;
-  char killSignal[] = "KILLPI";
-  char testSignal[] = "TESTPI";
-  
   while (true) {
     char buffer[1024];
     printf("\n> ");
     scanf("%s", &buffer);
     
-    if(Strings::strcmp(killSignal, buffer)) {
+    if(strcasecmp("KILLPI", buffer) == 0) {
       printf("self destruct\n");
       blink();
       rebootSystem();
-    } else if (Strings::strcmp(testSignal, buffer)) {
+    } else if (strcasecmp("TESTPI", buffer) == 0) {
       printf("hello world");
+    } else if(strcasecmp("FAILPI", buffer) == 0) {
+      char txt[80];
+      sprintf(txt, "could not convert from bus address to physical address -> %#010x", 0x400);
+      fatalError(txt);
     } else {
       printf("didn't recognize command");
     }

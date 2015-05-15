@@ -10,6 +10,7 @@
 #define MKPi_System_h
 
 #include "NewOperator.h"
-#include "StringFunctions.h"
+#include <string.h>
+#include <strings.h>
 
 #endif
