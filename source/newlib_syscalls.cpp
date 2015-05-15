@@ -7,7 +7,12 @@
 //
 
 #include "newlib_syscalls.h"
+#include <stdlib.h>
+#include "UART.h"
 #include <sys/stat.h>
+#include "StringFunctions.h"
+
+using namespace HIL;
 
 extern "C" int _close(int file) {
   return -1;
@@ -33,11 +38,9 @@ extern "C" void* _sbrk(int incr) {
 }
 
 extern "C" int _write(int file, char *ptr, int len) {
-  int todo;
+  UART* uart = UART::instance();
+  uart->sendText(ptr, len);
   
-  for (todo = 0; todo < len; todo++) {
-//    outbyte (*ptr++);
-  }
   return len;
 }
 
@@ -55,5 +58,21 @@ extern "C" int _lseek(int file, int ptr, int dir) {
 }
 
 extern "C" int _read(int file, char *ptr, int len) {
-  return 0;
+  UART* uart = UART::instance();
+  
+  uart->sendText("called _read, len: ");
+  char b[10];
+  System::Strings::tostr(len, b);
+  uart->sendText(b);
+  int i;
+  for (i = 0; i < len; i++) {
+    ptr[i] = uart->readByte();
+    uart->sendByte(ptr[i]);
+
+    if(ptr[i] == '\n' || ptr[i] == '\r') {
+      ptr[i] = '\n';
+      return i + 1;
+    }
+  }
+  return i + 1;
 }
