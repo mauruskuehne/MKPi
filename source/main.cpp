@@ -30,8 +30,25 @@ extern uint32_t __data_rom_start__;
 extern uint32_t __data_start__;
 extern uint32_t __data_end__;
 
+extern uint8_t* __stack;
+extern uint8_t* __heap_start;
+extern uint8_t* __kernel_start;
+extern uint8_t* __kernel_end;
 volatile bool interruptExecuted = false;
 
+void print_init() {
+  printf("\nSystem Parameters: \n");
+  printf(" - git revision: \t %s\n", VERSION);
+  printf(" - kernel start addr: \t 0x%08x\n", &__kernel_start);
+  printf(" - kernel end addr: \t 0x%08x\n", &__kernel_end);
+  printf(" - kernel size: \t %i KB\n", ((&__kernel_end - &__kernel_start) * 4) / 1024); // *4 -> we are counting 32Bit addresses, /1024 for kilobytes
+  printf(" - Stack origin: \t 0x%08x\n", &__stack);
+  printf(" - heap origin: \t 0x%08x\n", &__heap_start);
+  printf(" - init array start: \t 0x%08x\n", &__init_array_start);
+  printf(" - init array end: \t 0x%08x\n", &__init_array_end);
+  printf(" - nr of init funcs: \t %i\n", (&__init_array_end - &__init_array_start) );
+
+}
 
 int main() {
   
@@ -47,6 +64,8 @@ int main() {
   ActLed* led = ActLed::instance();
   
   printf("\n\nMKPi (rev %s)\n", VERSION);
+  
+  print_init();
   
   led->blink();
   led->blink();

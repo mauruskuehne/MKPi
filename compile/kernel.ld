@@ -6,6 +6,7 @@ MEMORY
 
 SECTIONS {
   .start : {
+  __kernel_start = .;
     KEEP(*(.init))
     KEEP(*(.fini))
 } > RAM = 0
@@ -52,10 +53,13 @@ __data_end__ = .;
 .other : {
   *(*)
 } > RAM
+
+__kernel_end = .;
 __heap_start = .;
 
 /**
   *	Stack starts at the top of the RAM, and moves down!
   **/
   __stack = ORIGIN(RAM) + LENGTH(RAM);
+
 }
