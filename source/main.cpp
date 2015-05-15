@@ -64,7 +64,7 @@ volatile bool interruptExecuted = false;
 
 int main() {
   
-  //initialize static variables
+  //call initializer methods for static variables
   for (uint32_t* address =((uint32_t*)&__init_array_start); address < (uint32_t*)&__init_array_end; address++) {
     uint32_t addrToCall = *address;
     void (*funcPtr)();
@@ -79,22 +79,20 @@ int main() {
   blink();
   blink();
   
-  printf("oh gosh\n");
-  
   int byteCounter = 0;
   char killSignal[] = "KILLPI";
   char testSignal[] = "TESTPI";
   
   while (true) {
     char buffer[1024];
-    printf("\nenter something! ");
+    printf("\n> ");
     scanf("%s", &buffer);
     
     if(Strings::strcmp(killSignal, buffer)) {
-      printf("self destruct");
+      printf("self destruct\n");
+      blink();
       rebootSystem();
     } else if (Strings::strcmp(testSignal, buffer)) {
-      
       printf("hello world");
     } else {
       printf("didn't recognize command");

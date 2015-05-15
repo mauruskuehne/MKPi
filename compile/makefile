@@ -22,25 +22,33 @@ ASM_OBJECTS=$(addprefix $(BUILD)/,$(notdir $(ASMSRC:.s=.o)))
 
 GIT_VERSION := $(shell git describe --abbrev=4 --dirty --always --tags)
 
+#external libraries
+
+EXTERNAL_LIB_DIR=-L../external/newlib/arm-none-eabi/armv6-m/newlib
+EXTERNAL_INC_DIR=-I
+
+LIBS=-lgcc -lc -lgcc
+
+CPPCARGS=-std=c++14 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles  $(LIBS) -DVERSION=\"$(GIT_VERSION)\"
 
 ###### TARGETS
 
 all: IMAGE
 
 $(BUILD)/%.o: $(SOURCE)/%.cpp
-	$(CPPC) -c -std=c++14 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles -L/Users/maumau/Projects/MKPi/external/newlib/arm-none-eabi/armv6-m/newlib -lc  -DVERSION=\"$(GIT_VERSION)\" -o $@ $^
+	$(CPPC) -v -c $(CPPCARGS)  -o $@ $^
 
 $(BUILD)/%.o: $(SOURCE)/%.s
 	$(ASMC) -o $@ $^
 
 CPP: $(CPPSRC)
-	$(CPPC) -c -std=c++14 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles -L/Users/maumau/Projects/MKPi/external/newlib/arm-none-eabi/armv6-m/newlib -lc $(CPPSRC) -o $(CPP_OBJECTS)
+	$(CPPC) -c $(CCPCARGS) $(CPPSRC) -o $(CPP_OBJECTS)
 
 ASM: $(ASMSRC)
 	$(ASMC) $(ASMSRC) -o $(ASM_OBJECTS)
 
 LINK: $(CPP_OBJECTS) $(ASM_OBJECTS)
-	$(LINKER) -nostdlib -nostartfiles -O2 -T $(LINKSCRIPT) $(ASM_OBJECTS) $(CPP_OBJECTS) -L/Users/maumau/Projects/MKPi/external/newlib/arm-none-eabi/armv6-m/newlib -lgcc -lc -lgcc -o $(BUILD)/kernel.elf
+	$(LINKER) -v -O2 -T $(LINKSCRIPT) $(ASM_OBJECTS) $(CPP_OBJECTS) $(CPPCARGS) -o $(BUILD)/kernel.elf
 
 IMAGE: LINK
 	$(OBJCOPY) $(BUILD)/kernel.elf -O binary $(BUILD)/kernel.img
