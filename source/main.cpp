@@ -16,7 +16,7 @@
 #include "Errors.h"
 #include "ArrayList.h"
 #include "System.h"
-
+#include "string.h"
 #define GPFSEL1 PhysicalAddress{0x20200004}
 #define GPSET0  PhysicalAddress{0x2020001C}
 #define GPCLR0  PhysicalAddress{0x20200028}
@@ -87,10 +87,8 @@ int main() {
   
   while (true) {
     char buffer[1024];
-    printf("enter something! ");
+    printf("\nenter something! ");
     scanf("%s", &buffer);
-    
-    printf(buffer);
     
     if(Strings::strcmp(killSignal, buffer)) {
       printf("self destruct");

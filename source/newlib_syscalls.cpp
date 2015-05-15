@@ -40,7 +40,6 @@ extern "C" void* _sbrk(int incr) {
 extern "C" int _write(int file, char *ptr, int len) {
   UART* uart = UART::instance();
   uart->sendText(ptr, len);
-  
   return len;
 }
 
@@ -59,11 +58,6 @@ extern "C" int _lseek(int file, int ptr, int dir) {
 
 extern "C" int _read(int file, char *ptr, int len) {
   UART* uart = UART::instance();
-  
-  uart->sendText("called _read, len: ");
-  char b[10];
-  System::Strings::tostr(len, b);
-  uart->sendText(b);
   int i;
   for (i = 0; i < len; i++) {
     ptr[i] = uart->readByte();
