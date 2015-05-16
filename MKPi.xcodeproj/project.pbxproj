@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		721DFCF41B04AD3C004AC11F /* newlib_syscalls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 721DFCF21B04AD3C004AC11F /* newlib_syscalls.cpp */; };
+		72C2F3BB1B0743E8005C216A /* CommandInterpreter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72C2F3B91B0743E8005C216A /* CommandInterpreter.cpp */; };
+		72C2F3BE1B074402005C216A /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72C2F3BC1B074402005C216A /* Console.cpp */; };
 		72CBBE9E1A5C44D9004E01CB /* Memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CBBE901A5C4359004E01CB /* Memory.cpp */; };
 		72CBBE9F1A5C44DF004E01CB /* bootstrap.s in Sources */ = {isa = PBXBuildFile; fileRef = 72C103D91A5846790084D4AA /* bootstrap.s */; };
 		72CBBEA01A5C44E1004E01CB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72C103C31A5840100084D4AA /* main.cpp */; };
@@ -55,6 +57,10 @@
 		72C103DA1A584A180084D4AA /* linker.ld */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = linker.ld; sourceTree = "<group>"; };
 		72C103DB1A584AAB0084D4AA /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; usesTabs = 0; };
 		72C103DC1A584F4A0084D4AA /* kernel.ld */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kernel.ld; sourceTree = "<group>"; };
+		72C2F3B91B0743E8005C216A /* CommandInterpreter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandInterpreter.cpp; sourceTree = "<group>"; };
+		72C2F3BA1B0743E8005C216A /* CommandInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandInterpreter.h; sourceTree = "<group>"; };
+		72C2F3BC1B074402005C216A /* Console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Console.cpp; sourceTree = "<group>"; };
+		72C2F3BD1B074402005C216A /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
 		72CBBE901A5C4359004E01CB /* Memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Memory.cpp; sourceTree = "<group>"; };
 		72CBBE911A5C4359004E01CB /* Memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memory.h; sourceTree = "<group>"; };
 		72CBBE961A5C44D0004E01CB /* MKPi-doc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "MKPi-doc"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,6 +200,10 @@
 				72D196701AF61B870012148F /* System.h */,
 				721DFCF31B04AD3C004AC11F /* newlib_syscalls.h */,
 				721DFCF21B04AD3C004AC11F /* newlib_syscalls.cpp */,
+				72C2F3B91B0743E8005C216A /* CommandInterpreter.cpp */,
+				72C2F3BA1B0743E8005C216A /* CommandInterpreter.h */,
+				72C2F3BC1B074402005C216A /* Console.cpp */,
+				72C2F3BD1B074402005C216A /* Console.h */,
 			);
 			name = System;
 			sourceTree = "<group>";
@@ -332,8 +342,10 @@
 				721DFCF41B04AD3C004AC11F /* newlib_syscalls.cpp in Sources */,
 				72ED28061AED4F310004DF73 /* AddressTypes.cpp in Sources */,
 				72CBBE9E1A5C44D9004E01CB /* Memory.cpp in Sources */,
+				72C2F3BB1B0743E8005C216A /* CommandInterpreter.cpp in Sources */,
 				72D23CBF1AF52C76001E38AE /* ArrayList.cpp in Sources */,
 				72CBBEAA1A5C5CEC004E01CB /* Mailbox.cpp in Sources */,
+				72C2F3BE1B074402005C216A /* Console.cpp in Sources */,
 				72D18DF11B0667BC0093C771 /* ActLed.cpp in Sources */,
 				72CBBEA01A5C44E1004E01CB /* main.cpp in Sources */,
 				72E57D961A6D8E3B004B0475 /* UART.cpp in Sources */,

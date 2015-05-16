@@ -29,7 +29,7 @@ EXTERNAL_INC_DIR=-I
 
 LIBS=-lgcc -lc -lgcc
 
-CPPCARGS=-std=c++14 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles  $(LIBS) -DVERSION=\"$(GIT_VERSION)\"
+CPPCARGS=-std=c++14 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles -Wall  $(LIBS) -DVERSION=\"$(GIT_VERSION)\"
 
 ###### TARGETS
 

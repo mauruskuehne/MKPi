@@ -16,4 +16,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "Console.h"
+
 #endif

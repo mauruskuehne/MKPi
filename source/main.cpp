@@ -16,6 +16,7 @@
 
 using namespace HIL;
 using namespace HIL::Memory;
+using namespace System;
 
 
 extern "C" void (*__init_array_start)();
@@ -37,6 +38,9 @@ extern uint8_t* __kernel_end;
 volatile bool interruptExecuted = false;
 
 void print_init() {
+  
+  printf("\n\nMKPi (rev %s)\n", VERSION);
+  
   printf("\nSystem Parameters: \n");
   printf(" - git revision: \t %s\n", VERSION);
   printf(" - kernel start addr: \t 0x%08x\n", &__kernel_start);
@@ -47,7 +51,6 @@ void print_init() {
   printf(" - init array start: \t 0x%08x\n", &__init_array_start);
   printf(" - init array end: \t 0x%08x\n", &__init_array_end);
   printf(" - nr of init funcs: \t %i\n", (&__init_array_end - &__init_array_start) );
-
 }
 
 int main() {
@@ -60,36 +63,13 @@ int main() {
     (*funcPtr)();
   }
   
-  UART* uart = UART::instance();
-  ActLed* led = ActLed::instance();
+  CommandInterpreter* interpreter;
+  Console* console = new Console(interpreter);
   
-  printf("\n\nMKPi (rev %s)\n", VERSION);
   
   print_init();
   
-  led->blink();
-  led->blink();
-  
-  int byteCounter = 0;
-  while (true) {
-    char buffer[1024];
-    printf("\n> ");
-    scanf("%s", &buffer);
-    
-    if(strcasecmp("KILLPI", buffer) == 0) {
-      printf("self destruct\n");
-      led->blink();
-      rebootSystem();
-    } else if (strcasecmp("TESTPI", buffer) == 0) {
-      printf("hello world");
-    } else if(strcasecmp("FAILPI", buffer) == 0) {
-      char txt[80];
-      sprintf(txt, "could not convert from bus address to physical address -> %#010x", 0x400);
-      fatalError(txt);
-    } else {
-      printf("didn't recognize command");
-    }
-  }
+  console->run();
   
   return 0;
 }
