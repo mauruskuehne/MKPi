@@ -27,17 +27,16 @@ extern "C" int _close(int file) {
   return -1;
 }
 
-static uint8_t* _current_heap_end = 0;
+uint32_t _current_heap_end = 0;
 
 extern uint8_t* __heap_start;
 
 extern "C" void* _sbrk(intptr_t incr) {
   if(_current_heap_end == 0)
-    _current_heap_end = __heap_start;
+    _current_heap_end = (uint32_t)&__heap_start;
   
   _current_heap_end += incr;
-  
-  return _current_heap_end;
+  return (uint32_t*)(_current_heap_end - incr);
 }
 
 extern "C" int _write(int file, char *ptr, int len) {
