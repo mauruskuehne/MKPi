@@ -14,11 +14,18 @@
 using namespace HIL;
 
 void* operator new (std::size_t size) throw (std::bad_alloc) {
-  
-  UART* uart = UART::instance();
-  
   printf("should allocate space: %#010x\n", size);
+  return malloc(size);;
+}
+
+void* operator new[] (std::size_t size) throw (std::bad_alloc) {
+  printf("should allocate space: %#010x\n", size);
+  return malloc(size);
   
+}
+
+void operator delete (void* ptr) {
+  free(ptr);
 }
 
 namespace System {

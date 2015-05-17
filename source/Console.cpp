@@ -15,24 +15,16 @@ namespace System {
   }
   
   void Console::run() {
+    char* buffer = new char[1024];
+    
     while (true) {
-      char buffer[1024];
-      printf("\n> ");
-      scanf("%s", &buffer);
+    //  char buffer[1024];
       
-      if(strcasecmp("KILLPI", buffer) == 0) {
-        printf("self destruct\n");
-        //led->blink();
-        rebootSystem();
-      } else if (strcasecmp("TESTPI", buffer) == 0) {
-        printf("hello world");
-      } else if(strcasecmp("FAILPI", buffer) == 0) {
-        char txt[80];
-        sprintf(txt, "could not convert from bus address to physical address -> %#010x", 0x400);
-        fatalError(txt);
-      } else {
-        printf("didn't recognize command");
-      }
+      printf("\n> ");
+      scanf("%s", buffer);
+      
+      _interpreter->interpretCommand(buffer);
+      
     }
   }
 }

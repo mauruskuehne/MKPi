@@ -16,6 +16,8 @@ namespace System {
     
   public:
     
+    void interpretCommand(const char* input);
+    
   };
 }
 
