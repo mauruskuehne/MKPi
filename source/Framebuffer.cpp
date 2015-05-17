@@ -89,7 +89,6 @@ namespace HIL {
     //return true;
     //_backbuffer = (uint32_t*) malloc(3 * _xSize * _ySize);
     
-    const char* str = "Hallo Welt";
     
     
     for (int i = 0; i < 100 ; i++) {
@@ -124,7 +123,7 @@ namespace HIL {
   
   void Framebuffer::DrawCharacter(int x, int y, char c, uint32_t color) {
     char bytes[16];
-    uint32_t start = (uint32_t)c * 16, end = start + 16, i = 0;
+    uint32_t start = (uint32_t)c * 16, i = 0;
     for ( i = 0; i < 16; i++ ) {
       bytes[i] = kernel_default_font[start + i];
     }
