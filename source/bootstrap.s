@@ -1,6 +1,6 @@
 .global init
 .extern main
-
+.extern __stack
 
 ;@ This is the actual entr point to the application.
 ;@ I need to look into how to do this another way, but it seems like
@@ -69,7 +69,7 @@ reset:
 	stmia r1!,{r2,r3,r4,r5,r6,r7,r8,r9}
 	ldmia r0!,{r2,r3,r4,r5,r6,r7,r8,r9}
 	stmia r1!,{r2,r3,r4,r5,r6,r7,r8,r9}
-	
+
 	;@ And then call the bootstrapper init function.
 	;@ NOTE: I delegated these two assembly files because I don't
 	;@ want to marry my kernel to the ivt setup code.
@@ -81,7 +81,7 @@ reset:
 _start:
 init:	
 ;@ Move the stack pointer.
-	mov sp, #0x80000
+	ldr sp, =__stack
 
 ;@ Invoke our main C++ entrypoint.
 	bl main
@@ -91,6 +91,12 @@ init:
 
 hang$:
 	b hang$
+
+
+.global get_stack_pointer
+get_stack_pointer:
+    mov r0,sp
+    bx lr
 
 .global PUT32
 PUT32:
