@@ -38,6 +38,7 @@ extern uint8_t* __kernel_start;
 extern uint8_t* __kernel_end;
 volatile bool interruptExecuted = false;
 
+extern "C" int get_stack_pointer();
 void print_init() {
   
   printf("\n\nMKPi (rev %s)\n", VERSION);
@@ -47,7 +48,8 @@ void print_init() {
   printf(" - kernel start addr: \t 0x%08lx\n", (uint32_t)&__kernel_start);
   printf(" - kernel end addr: \t 0x%08lx\n", (uint32_t)&__kernel_end);
   printf(" - kernel size: \t %i KB\n", ((&__kernel_end - &__kernel_start) * 4) / 1024); // *4 -> we are counting 32Bit addresses, /1024 for kilobytes
-  printf(" - Stack origin: \t 0x%08lx\n", (uint32_t)&__stack);
+  printf(" - stack origin: \t 0x%08lx\n", (uint32_t)&__stack);
+  printf(" - current stack end: \t 0x%08lx\n", (uint32_t)get_stack_pointer());
   printf(" - heap origin: \t 0x%08lx\n", (uint32_t)&__heap_start);
   printf(" - init array start: \t 0x%08lx\n", (uint32_t)&__init_array_start);
   printf(" - init array end: \t 0x%08lx\n", (uint32_t)&__init_array_end);
@@ -63,11 +65,12 @@ int main() {
     funcPtr = (void(*)())addrToCall;
     (*funcPtr)();
   }
-  
+  printf("creating interpreter\n");
   CommandInterpreter* interpreter = new CommandInterpreter();
+  printf("creating console\n");
   Console* console = new Console(interpreter);
   
-  
+  printf("calling init\n");
   print_init();
   
   console->run();
