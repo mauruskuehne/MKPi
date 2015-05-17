@@ -33,7 +33,7 @@ namespace HIL {
         pAddr.address = address - 0x5E000000;
       } else {
         char txt[80];
-        sprintf(txt, "could not convert from bus address to physical address -> %#010x", address);
+        sprintf(txt, "could not convert from bus address to physical address -> %#010lx", address);
         fatalError(txt);
       }
       
@@ -71,7 +71,7 @@ namespace HIL {
         bAddr.address = address + 0x5E000000;
       } else {
         char txt[80];
-        sprintf(txt, "could not convert from physical address to bus address -> %#010x", address);
+        sprintf(txt, "could not convert from physical address to bus address -> %#010lx", address);
         fatalError(txt);
       }
       

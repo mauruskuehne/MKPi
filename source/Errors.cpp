@@ -17,15 +17,15 @@ using namespace HIL::Memory;
 
 void fatalError(const char* errorMessage) {
   printf(errorMessage);
-
+  
+  char* buffer = new char[1024];
   while (true) {
     
     printf("\nsystem failed with a fatal error.\n");
     printf("enter KILLPI to reboot.\n");
     
-    char buffer[1024];
     printf("> ");
-    scanf("%s", &buffer);
+    scanf("%s", buffer);
     
     if(strcasecmp("KILLPI", buffer) == 0) {
       printf("self destruct\n");
@@ -33,6 +33,7 @@ void fatalError(const char* errorMessage) {
       led->blink();
       rebootSystem();
     }
+    
   }
 }
 

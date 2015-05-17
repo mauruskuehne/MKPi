@@ -12,6 +12,7 @@
 #include "ArrayList.h"
 #include "System.h"
 #include <string.h>
+#include <inttypes.h>
 #include "HIL.h"
 
 using namespace HIL;
@@ -77,7 +78,6 @@ int main() {
 extern "C" void svc_handler( uint32_t value ) {
   
   ActLed* led = ActLed::instance();
-  unsigned int ra;
   for(int i = 0; i < value; i++)
   {
     led->blink();
@@ -88,7 +88,6 @@ extern "C" void svc_handler( uint32_t value ) {
 extern "C" void irq_handler( void ) {
   
   ActLed* led = ActLed::instance();
-  unsigned int ra;
   for(int i = 0; i < 10; i++)
   {
     led->blink();
