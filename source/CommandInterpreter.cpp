@@ -21,6 +21,18 @@ extern uint32_t _current_heap_end;
 
 char* ptrs[1000];
 
+void stackTest(int recursionCount) {
+  uint32_t stackOrigin = (uint32_t)&__stack;
+  uint32_t currentStack = get_stack_pointer();
+  uint32_t stackSize = stackOrigin - currentStack;
+  printf("call nr %i, stack size: 0x#08%lx\n", recursionCount, stackSize);
+  
+  int newRecursionCount = recursionCount - 1;
+  if(newRecursionCount == 0)
+    return;
+  stackTest(newRecursionCount);
+}
+
 namespace System {
   void CommandInterpreter::interpretCommand(const char *input) {
     
@@ -33,9 +45,6 @@ namespace System {
       
       for (int i = 0; i < 1000; i++) {
         char* longText = new char[1024];
-        
-        
-        
         ptrs[i] = longText;
       }
       
@@ -52,7 +61,6 @@ namespace System {
       sprintf(txt, "could not convert from bus address to physical address -> %#010x", 0x400);
       fatalError(txt);
     } else if(strcasecmp("HEAPPI", input) == 0) {
-      
       printf(" - kernel start addr: \t 0x%08lx\n", (uint32_t)&__kernel_start);
       printf(" - kernel end addr: \t 0x%08lx\n", (uint32_t)&__kernel_end);
       printf(" - kernel size: \t %i KB\n", ((&__kernel_end - &__kernel_start) * 4) / 1024); // *4 -> we are counting 32Bit addresses, /1024 for kilobytes
@@ -61,6 +69,8 @@ namespace System {
       printf(" - heap origin: \t 0x%08lx\n", (uint32_t)&__heap_start);
       printf(" - current break: \t 0x%08lx\n", (uint32_t)_current_heap_end);
       
+    } else if(strcasecmp("STCKPI", input) == 0) {
+      stackTest(100);
     } else {
       printf("didn't recognize command");
     }
