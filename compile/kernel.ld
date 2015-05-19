@@ -61,5 +61,5 @@ __heap_start = .;
   *	Stack starts at the top of the RAM, and moves down!
   **/
   __stack = ORIGIN(RAM) + LENGTH(RAM);
-
+  __ram_end = .;
 }

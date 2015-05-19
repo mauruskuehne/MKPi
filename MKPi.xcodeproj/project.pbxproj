@@ -23,6 +23,7 @@
 		72ED28061AED4F310004DF73 /* AddressTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72ED28051AED4F310004DF73 /* AddressTypes.cpp */; };
 		72ED934D1AF3BD3C00999B2F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72ED934C1AF3BD3700999B2F /* main.cpp */; };
 		72ED93511AF3C30000999B2F /* StringFunctionsTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72ED934F1AF3C30000999B2F /* StringFunctionsTest.cpp */; };
+		72F19F731B0B587400907611 /* DebugOperations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72F19F711B0B587400907611 /* DebugOperations.cpp */; };
 		72FE6B611A5C8396007BE221 /* font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FE6B5F1A5C8396007BE221 /* font.cpp */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,8 @@
 		72ED934C1AF3BD3700999B2F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		72ED934F1AF3C30000999B2F /* StringFunctionsTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringFunctionsTest.cpp; sourceTree = "<group>"; };
 		72ED93521AF3DE8300999B2F /* AddressTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressTypes.h; sourceTree = "<group>"; };
+		72F19F711B0B587400907611 /* DebugOperations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DebugOperations.cpp; sourceTree = "<group>"; };
+		72F19F721B0B587400907611 /* DebugOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugOperations.h; sourceTree = "<group>"; };
 		72FE6B5F1A5C8396007BE221 /* font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font.cpp; sourceTree = "<group>"; };
 		72FE6B601A5C8396007BE221 /* font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,6 +198,7 @@
 		72D23CC01AF5394B001E38AE /* System */ = {
 			isa = PBXGroup;
 			children = (
+				72F19F701B0B585300907611 /* Diagnostics */,
 				72D23CC21AF53984001E38AE /* NewOperator.h */,
 				72D23CC11AF53984001E38AE /* NewOperator.cpp */,
 				72D196701AF61B870012148F /* System.h */,
@@ -234,6 +238,15 @@
 			children = (
 			);
 			path = "mkpi-tests";
+			sourceTree = "<group>";
+		};
+		72F19F701B0B585300907611 /* Diagnostics */ = {
+			isa = PBXGroup;
+			children = (
+				72F19F711B0B587400907611 /* DebugOperations.cpp */,
+				72F19F721B0B587400907611 /* DebugOperations.h */,
+			);
+			name = Diagnostics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,6 +362,7 @@
 				72D18DF11B0667BC0093C771 /* ActLed.cpp in Sources */,
 				72CBBEA01A5C44E1004E01CB /* main.cpp in Sources */,
 				72E57D961A6D8E3B004B0475 /* UART.cpp in Sources */,
+				72F19F731B0B587400907611 /* DebugOperations.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

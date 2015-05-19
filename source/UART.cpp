@@ -13,26 +13,6 @@ using namespace HIL;
 
 
 extern "C" void dummy ( unsigned int );
-/*
-#define GPFSEL1 0x20200004
-#define GPSET0  0x2020001C
-#define GPCLR0  0x20200028
-#define GPPUD       0x20200094
-#define GPPUDCLK0   0x20200098*/
-
-#define AUX_IRQ         0x20215000
-#define AUX_ENABLES     0x20215004
-#define AUX_MU_IO_REG   0x20215040
-#define AUX_MU_IER_REG  0x20215044
-#define AUX_MU_IIR_REG  0x20215048
-#define AUX_MU_LCR_REG  0x2021504C
-#define AUX_MU_MCR_REG  0x20215050
-#define AUX_MU_LSR_REG  0x20215054
-#define AUX_MU_MSR_REG  0x20215058
-#define AUX_MU_SCRATCH  0x2021505C
-#define AUX_MU_CNTL_REG 0x20215060
-#define AUX_MU_STAT_REG 0x20215064
-#define AUX_MU_BAUD_REG 0x20215068
 
 
 namespace  UartMemory = Memory::Locations::UART;
@@ -108,15 +88,13 @@ namespace HIL {
   }
   
   void UART::sendText(const char* text) {
-    for(int i = 0; text[i] != '\0'; i++)
-    {
+    for(int i = 0; text[i] != '\0'; i++) {
       sendByte(text[i]);
     }
   }
   
   void UART::sendText(const char* text, int length) {
-    for(int i = 0; i < length; i++)
-    {
+    for(int i = 0; i < length; i++) {
       sendByte(text[i]);
     }
     
@@ -127,18 +105,31 @@ namespace HIL {
   uint8_t UART::readByte() {
     while (1) {
       if(!(Memory::read(UartMemory::FR) & (1<<4))) break;
-      
     }
     
     return Memory::read(UartMemory::DR);
   }
   
   void UART::sendByte(uint8_t byte) {
-    while(1)
-    {
+    while(1) {
       if(!(Memory::read(UartMemory::FR)&(1<<5))) break;
     }
     Memory::write(UartMemory::DR, byte);
+  }
+  
+  void UART::sendBytes(uint8_t* bytes, size_t length) {
+    for (size_t i = 0; i < length; i++) {
+      this->sendByte(bytes[i]);
+    }
+  }
+  
+  void UART::sendMessage(UartMessage* msg) {
+    uint32_t headerSize = sizeof(msg->header);
+    uint32_t footerSize = sizeof(msg->footer);
+    
+    this->sendBytes((uint8_t*)&(msg->header), headerSize);
+    this->sendBytes(msg->content, msg->header.contentSize);
+    this->sendBytes((uint8_t*)&msg->footer, footerSize);
   }
 }
 

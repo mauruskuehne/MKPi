@@ -15,8 +15,6 @@
 #include <cstdint>
 #include <stdlib.h>
 
-const uint32_t ARM_BUS_LOCATION = 0x40000000;
-
 const uint32_t SDRAM_SIZE = 1024* 1024 * 256;
 
 namespace HIL {

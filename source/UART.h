@@ -12,8 +12,41 @@
 
 #include "Memory.h"
 #include "HIL.h"
+#include <stdint.h>
 
 namespace HIL {
+  
+  enum UartMessageType : uint32_t {
+    TextMessage = 0,
+    MemoryDump = 1
+  };
+  
+  
+  struct UartMessageHeader {
+    UartMessageType messageType;
+    uint32_t contentSize;
+  };
+  
+  struct UartMessageFooter {
+    private : const char footer1[13] = "***MSGEND***";
+    public  : uint32_t contentSize;
+    private : const char footer2[13] = "***MSGEND***";
+  };
+  
+  struct UartMessage {
+    UartMessageHeader header;
+    uint8_t* content;
+    
+    UartMessageFooter footer;
+    
+    UartMessage(uint8_t* content, uint32_t size, UartMessageType type) {
+      this->content = content;
+      header.messageType = type;
+      header.contentSize = size;
+      footer.contentSize = size;
+    }
+  };
+  
   class UART
   {
   public:
@@ -23,7 +56,10 @@ namespace HIL {
     void sendText(const char* text, int length);
     
     uint8_t readByte();
+    
+    void sendBytes(uint8_t* bytes, size_t length);
     void sendByte(uint8_t byte);
+    void sendMessage(UartMessage* msg);
     
   private:
     UART();
