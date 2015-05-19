@@ -18,8 +18,10 @@ namespace HIL {
   
   enum UartMessageType : uint32_t {
     TextMessage = 0,
-    MemoryDump = 1
-  };
+    BeginMemoryDump = 1,
+    MemoryDumpSegment = 2,
+    EndMemoryDump = 3
+  } typedef UartMessageType;
   
   
   struct UartMessageHeader {

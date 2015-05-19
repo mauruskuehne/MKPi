@@ -16,6 +16,11 @@ TEST_CASE( "strlen", "[StringFunctions]" ) {
   REQUIRE(Strings::strlen("") == 0);
 }
 
+struct foo {
+  uint32_t bar;
+  uint32_t baz[];
+};
+
 
 TEST_CASE( "strcmp", "[StringFunctions]" ) {
   
@@ -23,4 +28,7 @@ TEST_CASE( "strcmp", "[StringFunctions]" ) {
   REQUIRE(Strings::strcmp("","") == 1);
   
   REQUIRE(Strings::strcmp("hello","hello") == 1);
+  
+  
+  
 }

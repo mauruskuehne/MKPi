@@ -17,17 +17,54 @@ using namespace HIL;
 namespace System {
   namespace Diagnostics {
     
-    
     void DebugOperations::dump_memory(uint32_t startAddress, uint32_t endAddress) {
+      
+      const uint32_t blockSize = 1024;
+      
+      printf("*** begin memory dump ***\n");
+      
+      uint32_t size = endAddress - startAddress;
+      
+      
+      printf("dump size: %lx bytes\n", size);
+      
+      UartMemDumpPacketInfo* pkgInfo = new UartMemDumpPacketInfo();
+      
+      pkgInfo->dumpSize = size;
+      pkgInfo->blockCount = (size / blockSize) + 1;
+      
+      UartMessage* msg = new UartMessage((uint8_t*)&pkgInfo, sizeof(UartMemDumpPacketInfo), UartMessageType::BeginMemoryDump);
+      
+      printf("created begin dump message packet\n");
+      
       UART* uart = UART::instance();
       
-      printf("*** begin memory dump ***");
       
-      size_t size = endAddress - startAddress;
+      uart->sendMessage(msg);
       
-      printf("dump size: %i bytes", size);
+      printf("sent begin dump message packet\n");
       
-      uart->sendBytes((uint8_t*)startAddress, size);
+      printf("begin sending dump packets...\n");
+      
+      UartMemDumpDataBlock* blockData = new UartMemDumpDataBlock();
+      
+      UartMessage* packetMsg = new UartMessage((uint8_t*)&blockData, sizeof(blockData), UartMessageType::MemoryDumpSegment);
+      for (uint32_t i = 0; i <= pkgInfo->blockCount; i++) {
+        
+        uint32_t currentAddress = (startAddress + (pkgInfo->blockCount * i));
+        
+        uint32_t currentBlockSize = (currentAddress > endAddress) ? currentAddress - endAddress : blockSize;
+        
+        printf("sending packet %lu/%lu containing %lu bytes\n", i, pkgInfo->blockCount, currentBlockSize);
+        
+        blockData->content = 
+        
+        uart->sendMessage(packetMsg);
+      }
+      
+      delete pkgInfo;
+      delete msg;
+      delete packetMsg;
     }
     
     void DebugOperations::dump_memory() {
