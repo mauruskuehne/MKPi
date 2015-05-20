@@ -15,39 +15,7 @@
 #include <stdint.h>
 
 namespace HIL {
-  
-  enum UartMessageType : uint32_t {
-    TextMessage = 0,
-    BeginMemoryDump = 1,
-    MemoryDumpSegment = 2,
-    EndMemoryDump = 3
-  } typedef UartMessageType;
-  
-  
-  struct UartMessageHeader {
-    UartMessageType messageType;
-    uint32_t contentSize;
-  };
-  
-  struct UartMessageFooter {
-    private : const char footer1[13] = "***MSGEND***";
-    public  : uint32_t contentSize;
-    private : const char footer2[13] = "***MSGEND***";
-  };
-  
-  struct UartMessage {
-    UartMessageHeader header;
-    uint8_t* content;
-    
-    UartMessageFooter footer;
-    
-    UartMessage(uint8_t* content, uint32_t size, UartMessageType type) {
-      this->content = content;
-      header.messageType = type;
-      header.contentSize = size;
-      footer.contentSize = size;
-    }
-  };
+
   
   class UART
   {

@@ -4,4 +4,10 @@
    <FileRef
       location = "group:MKPi/MKPi.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:MKPiCom/MKPiCom.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:MKPiSerialProtocol/MKPiSerialProtocol.xcodeproj">
+   </FileRef>
 </Workspace>
