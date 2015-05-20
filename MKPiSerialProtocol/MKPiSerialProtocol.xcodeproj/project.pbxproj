@@ -6,42 +6,10 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		725FE7D71B0D15E4006C4AC6 /* BuildLibrary */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 725FE7D81B0D15E4006C4AC6 /* Build configuration list for PBXAggregateTarget "BuildLibrary" */;
-			buildPhases = (
-			);
-			dependencies = (
-				725FE7DE1B0D15F2006C4AC6 /* PBXTargetDependency */,
-				725FE7DC1B0D15EF006C4AC6 /* PBXTargetDependency */,
-			);
-			name = BuildLibrary;
-			productName = BuildLibrary;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		725FE7C51B0D0CA4006C4AC6 /* UartMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 725FE7C31B0D0CA4006C4AC6 /* UartMessage.cpp */; };
 		725FE7E41B0D1B39006C4AC6 /* UartMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 725FE7E31B0D1B39006C4AC6 /* UartMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		725FE7DB1B0D15EF006C4AC6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 725FE7B01B0D0BB8006C4AC6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 725FE7D31B0D15D4006C4AC6;
-			remoteInfo = MKPISerialProtocol_RBPI;
-		};
-		725FE7DD1B0D15F2006C4AC6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 725FE7B01B0D0BB8006C4AC6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 725FE7B71B0D0BB8006C4AC6;
-			remoteInfo = MKPiSerialProtocol;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		725FE7B81B0D0BB8006C4AC6 /* libMKPiSerialProtocol.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMKPiSerialProtocol.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,8 +32,8 @@
 		725FE7AF1B0D0BB8006C4AC6 = {
 			isa = PBXGroup;
 			children = (
-				725FE7E21B0D1B39006C4AC6 /* Include */,
 				725FE7DF1B0D16A1006C4AC6 /* compile */,
+				725FE7E21B0D1B39006C4AC6 /* include */,
 				725FE7C31B0D0CA4006C4AC6 /* UartMessage.cpp */,
 				725FE7B91B0D0BB8006C4AC6 /* Products */,
 			);
@@ -87,11 +55,12 @@
 			path = compile;
 			sourceTree = "<group>";
 		};
-		725FE7E21B0D1B39006C4AC6 /* Include */ = {
+		725FE7E21B0D1B39006C4AC6 /* include */ = {
 			isa = PBXGroup;
 			children = (
 				725FE7E31B0D1B39006C4AC6 /* UartMessage.h */,
 			);
+			name = include;
 			path = Include;
 			sourceTree = "<group>";
 		};
@@ -158,9 +127,6 @@
 					725FE7D31B0D15D4006C4AC6 = {
 						CreatedOnToolsVersion = 6.3.1;
 					};
-					725FE7D71B0D15E4006C4AC6 = {
-						CreatedOnToolsVersion = 6.3.1;
-					};
 				};
 			};
 			buildConfigurationList = 725FE7B31B0D0BB8006C4AC6 /* Build configuration list for PBXProject "MKPiSerialProtocol" */;
@@ -177,7 +143,6 @@
 			targets = (
 				725FE7B71B0D0BB8006C4AC6 /* MKPiSerialProtocol */,
 				725FE7D31B0D15D4006C4AC6 /* MKPISerialProtocol_RBPI */,
-				725FE7D71B0D15E4006C4AC6 /* BuildLibrary */,
 			);
 		};
 /* End PBXProject section */
@@ -192,19 +157,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		725FE7DC1B0D15EF006C4AC6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 725FE7D31B0D15D4006C4AC6 /* MKPISerialProtocol_RBPI */;
-			targetProxy = 725FE7DB1B0D15EF006C4AC6 /* PBXContainerItemProxy */;
-		};
-		725FE7DE1B0D15F2006C4AC6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 725FE7B71B0D0BB8006C4AC6 /* MKPiSerialProtocol */;
-			targetProxy = 725FE7DD1B0D15F2006C4AC6 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		725FE7BA1B0D0BB8006C4AC6 /* Debug */ = {
@@ -331,20 +283,6 @@
 			};
 			name = Release;
 		};
-		725FE7D91B0D15E4006C4AC6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		725FE7DA1B0D15E4006C4AC6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -371,14 +309,6 @@
 			buildConfigurations = (
 				725FE7D51B0D15D4006C4AC6 /* Debug */,
 				725FE7D61B0D15D4006C4AC6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		725FE7D81B0D15E4006C4AC6 /* Build configuration list for PBXAggregateTarget "BuildLibrary" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				725FE7D91B0D15E4006C4AC6 /* Debug */,
-				725FE7DA1B0D15E4006C4AC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
