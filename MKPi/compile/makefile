@@ -22,14 +22,11 @@ ASM_OBJECTS=$(addprefix $(BUILD)/,$(notdir $(ASMSRC:.s=.o)))
 
 GIT_VERSION := $(shell git describe --abbrev=4 --dirty --always --tags)
 
-#external libraries
+HEADERS=-I../../MKPiSerialProtocol/build/include
 
-EXTERNAL_LIB_DIR=-L../external/newlib/arm-none-eabi/armv6-m/newlib
-EXTERNAL_INC_DIR=-I
+LIBS=-lgcc -lc -lgcc -L../../MKPiSerialProtocol/build -lMKPISerialProtocol_RBPI
 
-LIBS=-lgcc -lc -lgcc
-
-CPPCARGS=-std=c++14 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles -Wall  $(LIBS) -DVERSION=\"$(GIT_VERSION)\"
+CPPCARGS=-std=c++14 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-exceptions -nostartfiles -Wall $(HEADERS) $(LIBS) -DVERSION=\"$(GIT_VERSION)\"
 
 ###### TARGETS
 

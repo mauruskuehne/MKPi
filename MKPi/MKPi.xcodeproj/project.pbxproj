@@ -49,7 +49,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		721DFCF11B04A97E004AC11F /* compile_newlib.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = compile_newlib.sh; sourceTree = "<group>"; };
 		721DFCF21B04AD3C004AC11F /* newlib_syscalls.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = newlib_syscalls.cpp; sourceTree = "<group>"; };
 		721DFCF31B04AD3C004AC11F /* newlib_syscalls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newlib_syscalls.h; sourceTree = "<group>"; };
 		72C103C31A5840100084D4AA /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -143,7 +142,6 @@
 				72C103DB1A584AAB0084D4AA /* makefile */,
 				72C103DC1A584F4A0084D4AA /* kernel.ld */,
 				72C103DA1A584A180084D4AA /* linker.ld */,
-				721DFCF11B04A97E004AC11F /* compile_newlib.sh */,
 			);
 			path = compile;
 			sourceTree = "<group>";

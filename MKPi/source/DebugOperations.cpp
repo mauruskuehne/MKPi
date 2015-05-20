@@ -8,6 +8,7 @@
 
 #include "DebugOperations.h"
 #include "UART.h"
+#include "UartMessage.h"
 
 
 extern uint32_t __ram_end;
@@ -57,7 +58,6 @@ namespace System {
         
         printf("sending packet %lu/%lu containing %lu bytes\n", i, pkgInfo->blockCount, currentBlockSize);
         
-        blockData->content = 
         
         uart->sendMessage(packetMsg);
       }

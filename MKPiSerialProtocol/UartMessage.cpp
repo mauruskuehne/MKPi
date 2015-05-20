@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Maurus Kühne. All rights reserved.
 //
 
-#include "UartMessage.h"
+#include "include/UartMessage.h"
 
 void foo::bar() {
   

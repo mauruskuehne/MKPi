@@ -13,6 +13,7 @@
 #include "Memory.h"
 #include "HIL.h"
 #include <stdint.h>
+#include "UartMessage.h"
 
 namespace HIL {
 

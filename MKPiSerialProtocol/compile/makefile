@@ -2,19 +2,18 @@
 
 CPPC=/usr/local/bin/arm-none-eabi-g++
 ASMC=/usr/local/bin/arm-none-eabi-as
+AR=/usr/local/bin/arm-none-eabi-ar
 LINKER=/usr/local/bin/arm-none-eabi-g++
 OBJCOPY=/usr/local/bin/arm-none-eabi-objcopy
 OBJDUMP=/usr/local/bin/arm-none-eabi-objdump
 
 SOURCE=../
+HEADERS=../include/
 BUILD=../build
 
 #sources to compile:
 CPPSRC=$(wildcard $(SOURCE)/*.cpp)
 ASMSRC=$(wildcard $(SOURCE)/*.s)
-
-#linkscript
-LINKSCRIPT=kernel.ld
 
 #generated objects:
 CPP_OBJECTS=$(addprefix $(BUILD)/,$(notdir $(CPPSRC:.cpp=.o)))
@@ -28,7 +27,7 @@ CPPCARGS=-std=c++14 -ffreestanding -nostdlib -fno-builtin -fno-rtti -fno-excepti
 
 ###### TARGETS
 
-all: IMAGE
+all: LIBRARY
 
 $(BUILD)/%.o: $(SOURCE)/%.cpp
 	$(CPPC) -v -c $(CPPCARGS)  -o $@ $^
@@ -42,10 +41,14 @@ CPP: $(CPPSRC)
 ASM: $(ASMSRC)
 	$(ASMC) $(ASMSRC) -o $(ASM_OBJECTS)
 
-LINK: $(CPP_OBJECTS) $(ASM_OBJECTS)
-	$(LINKER) -v -O2 $(ASM_OBJECTS) $(CPP_OBJECTS) $(CPPCARGS) -o $(BUILD)/libMKPISerialProtocol_RBPI.a
+ARCHIVE: $(CPP_OBJECTS) $(ASM_OBJECTS)
+	$(AR) rcs libMKPISerialProtocol_RBPI.a $(ASM_OBJECTS) $(CPP_OBJECTS)
+	mv libMKPISerialProtocol_RBPI.a $(BUILD)/libMKPISerialProtocol_RBPI.a
 
-IMAGE: LINK
+HEADERS:
+	cp -r $(HEADERS) $(BUILD)/include
+
+LIBRARY: ARCHIVE HEADERS
 	hexdump -C $(BUILD)/libMKPISerialProtocol_RBPI.a > $(BUILD)/libMKPISerialProtocol_RBPI.a.hex
 	$(OBJDUMP) -D -S $(BUILD)/libMKPISerialProtocol_RBPI.a > $(BUILD)/libMKPISerialProtocol_RBPI.a.asm
 
