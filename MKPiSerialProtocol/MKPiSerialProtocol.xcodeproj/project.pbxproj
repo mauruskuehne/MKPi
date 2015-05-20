@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		725FE7C51B0D0CA4006C4AC6 /* UartMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 725FE7C31B0D0CA4006C4AC6 /* UartMessage.cpp */; };
-		725FE7C61B0D0CA4006C4AC6 /* UartMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 725FE7C41B0D0CA4006C4AC6 /* UartMessage.h */; };
+		725FE7C61B0D0CA4006C4AC6 /* UartMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 725FE7C41B0D0CA4006C4AC6 /* UartMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +31,8 @@
 		725FE7AF1B0D0BB8006C4AC6 = {
 			isa = PBXGroup;
 			children = (
+				725FE7CE1B0D12DD006C4AC6 /* Include */,
 				725FE7C31B0D0CA4006C4AC6 /* UartMessage.cpp */,
-				725FE7C41B0D0CA4006C4AC6 /* UartMessage.h */,
 				725FE7B91B0D0BB8006C4AC6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +43,14 @@
 				725FE7B81B0D0BB8006C4AC6 /* libMKPiSerialProtocol.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		725FE7CE1B0D12DD006C4AC6 /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				725FE7C41B0D0CA4006C4AC6 /* UartMessage.h */,
+			);
+			name = Include;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,7 +208,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -208,7 +219,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};

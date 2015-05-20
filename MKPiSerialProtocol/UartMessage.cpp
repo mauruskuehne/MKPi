@@ -7,3 +7,7 @@
 //
 
 #include "UartMessage.h"
+
+void foo::bar() {
+  
+}

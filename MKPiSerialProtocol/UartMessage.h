@@ -45,4 +45,11 @@ struct UartMessage {
   }
 };
 
+class foo {
+  
+  
+public:
+  void bar();
+};
+
 #endif /* defined(__MKPiSerialProtocol__UartMessage__) */
