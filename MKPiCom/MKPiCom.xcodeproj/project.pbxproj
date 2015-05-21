@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		725FE7A91B0D0B33006C4AC6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 725FE7A81B0D0B33006C4AC6 /* main.cpp */; };
-		725FE7CA1B0D0DA6006C4AC6 /* libMKPiSerialProtocol.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 725FE7C91B0D0DA6006C4AC6 /* libMKPiSerialProtocol.a */; };
+		72714C521B0E2C05009F0F11 /* libMKPiSerialProtocol.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 72714C511B0E2C05009F0F11 /* libMKPiSerialProtocol.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +27,7 @@
 		725FE7A51B0D0B33006C4AC6 /* MKPiCom */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MKPiCom; sourceTree = BUILT_PRODUCTS_DIR; };
 		725FE7A81B0D0B33006C4AC6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		725FE7C91B0D0DA6006C4AC6 /* libMKPiSerialProtocol.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMKPiSerialProtocol.a; path = "../../../Library/Developer/Xcode/DerivedData/MKPi-auaidilqwnyvsmbihfwhorfazrgv/Build/Products/Debug/libMKPiSerialProtocol.a"; sourceTree = "<group>"; };
+		72714C511B0E2C05009F0F11 /* libMKPiSerialProtocol.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMKPiSerialProtocol.a; path = "../../../../Library/Developer/Xcode/DerivedData/MKPi-cqgwkhsgbwybvvelfqryoesjqxgn/Build/Products/Debug/libMKPiSerialProtocol.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,7 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				725FE7CA1B0D0DA6006C4AC6 /* libMKPiSerialProtocol.a in Frameworks */,
+				72714C521B0E2C05009F0F11 /* libMKPiSerialProtocol.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +70,7 @@
 		725FE7CB1B0D0DB4006C4AC6 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				72714C511B0E2C05009F0F11 /* libMKPiSerialProtocol.a */,
 				725FE7C91B0D0DA6006C4AC6 /* libMKPiSerialProtocol.a */,
 			);
 			name = Libraries;
@@ -222,6 +224,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/MKPi-auaidilqwnyvsmbihfwhorfazrgv/Build/Products/Debug",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/MKPi-cqgwkhsgbwybvvelfqryoesjqxgn/Build/Products/Debug",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
@@ -234,6 +237,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/MKPi-auaidilqwnyvsmbihfwhorfazrgv/Build/Products/Debug",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/MKPi-cqgwkhsgbwybvvelfqryoesjqxgn/Build/Products/Debug",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
@@ -259,6 +263,7 @@
 				725FE7AE1B0D0B33006C4AC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -9,6 +9,7 @@
 #include "DebugOperations.h"
 #include "UART.h"
 #include "UartMessage.h"
+#include "UartMessageBuilder.h"
 
 
 extern uint32_t __ram_end;
@@ -29,12 +30,11 @@ namespace System {
       
       printf("dump size: %lx bytes\n", size);
       
-      UartMemDumpPacketInfo* pkgInfo = new UartMemDumpPacketInfo();
+//      UartMessage* msg = new UartMessage((uint8_t*)&pkgInfo, sizeof(UartMemDumpPacketInfo), UartMessageType::BeginMemoryDump);
       
-      pkgInfo->dumpSize = size;
-      pkgInfo->blockCount = (size / blockSize) + 1;
+      UartMessage* msg = UartMessageBuilder::CreateMemDumpPacketInfo(size, true);
       
-      UartMessage* msg = new UartMessage((uint8_t*)&pkgInfo, sizeof(UartMemDumpPacketInfo), UartMessageType::BeginMemoryDump);
+      
       
       printf("created begin dump message packet\n");
       
@@ -47,19 +47,22 @@ namespace System {
       
       printf("begin sending dump packets...\n");
       
-      UartMemDumpDataBlock* blockData = new UartMemDumpDataBlock();
+      for (uint32_t i = 0; i <= msg->content.memDumpPacketInfo.blockCount; i++) {
       
-      UartMessage* packetMsg = new UartMessage((uint8_t*)&blockData, sizeof(blockData), UartMessageType::MemoryDumpSegment);
-      for (uint32_t i = 0; i <= pkgInfo->blockCount; i++) {
         
-        uint32_t currentAddress = (startAddress + (pkgInfo->blockCount * i));
+        
+        uint32_t currentAddress = (startAddress + (msg->content.memDumpPacketInfo.blockCount * i));
         
         uint32_t currentBlockSize = (currentAddress > endAddress) ? currentAddress - endAddress : blockSize;
+        
+        UartMessage* packetMsg = UartMessageBuilder::CreateMemDumpBlock(i, (uint8_t*) currentAddress);
         
         printf("sending packet %lu/%lu containing %lu bytes\n", i, pkgInfo->blockCount, currentBlockSize);
         
         
         uart->sendMessage(packetMsg);
+        
+        delete packetMsg;
       }
       
       delete pkgInfo;

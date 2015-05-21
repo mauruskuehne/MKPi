@@ -7,15 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		725FE7C51B0D0CA4006C4AC6 /* UartMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 725FE7C31B0D0CA4006C4AC6 /* UartMessage.cpp */; };
-		725FE7E41B0D1B39006C4AC6 /* UartMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 725FE7E31B0D1B39006C4AC6 /* UartMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		725FE7C51B0D0CA4006C4AC6 /* UartMessageBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 725FE7C31B0D0CA4006C4AC6 /* UartMessageBuilder.cpp */; };
+		725FE7E41B0D1B39006C4AC6 /* UartMessageBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 725FE7E31B0D1B39006C4AC6 /* UartMessageBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		72714C541B0E4D86009F0F11 /* UartMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 72714C531B0E4D86009F0F11 /* UartMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		725FE7B81B0D0BB8006C4AC6 /* libMKPiSerialProtocol.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMKPiSerialProtocol.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		725FE7C31B0D0CA4006C4AC6 /* UartMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UartMessage.cpp; sourceTree = "<group>"; };
+		725FE7C31B0D0CA4006C4AC6 /* UartMessageBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UartMessageBuilder.cpp; sourceTree = "<group>"; };
 		725FE7E01B0D16A1006C4AC6 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
-		725FE7E31B0D1B39006C4AC6 /* UartMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UartMessage.h; sourceTree = "<group>"; };
+		725FE7E31B0D1B39006C4AC6 /* UartMessageBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UartMessageBuilder.h; sourceTree = "<group>"; };
+		72714C531B0E4D86009F0F11 /* UartMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UartMessage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,7 +36,7 @@
 			children = (
 				725FE7DF1B0D16A1006C4AC6 /* compile */,
 				725FE7E21B0D1B39006C4AC6 /* include */,
-				725FE7C31B0D0CA4006C4AC6 /* UartMessage.cpp */,
+				725FE7C31B0D0CA4006C4AC6 /* UartMessageBuilder.cpp */,
 				725FE7B91B0D0BB8006C4AC6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,7 +60,8 @@
 		725FE7E21B0D1B39006C4AC6 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				725FE7E31B0D1B39006C4AC6 /* UartMessage.h */,
+				725FE7E31B0D1B39006C4AC6 /* UartMessageBuilder.h */,
+				72714C531B0E4D86009F0F11 /* UartMessage.h */,
 			);
 			name = include;
 			path = Include;
@@ -71,7 +74,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				725FE7E41B0D1B39006C4AC6 /* UartMessage.h in Headers */,
+				72714C541B0E4D86009F0F11 /* UartMessage.h in Headers */,
+				725FE7E41B0D1B39006C4AC6 /* UartMessageBuilder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +156,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				725FE7C51B0D0CA4006C4AC6 /* UartMessage.cpp in Sources */,
+				725FE7C51B0D0CA4006C4AC6 /* UartMessageBuilder.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +315,7 @@
 				725FE7D61B0D15D4006C4AC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

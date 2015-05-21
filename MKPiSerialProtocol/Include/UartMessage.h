@@ -2,54 +2,62 @@
 //  UartMessage.h
 //  MKPiSerialProtocol
 //
-//  Created by Maurus Kühne on 20.05.15.
+//  Created by Maurus Kühne on 21/05/15.
 //  Copyright (c) 2015 Maurus Kühne. All rights reserved.
 //
 
-#ifndef __MKPiSerialProtocol__UartMessage__
-#define __MKPiSerialProtocol__UartMessage__
+#ifndef MKPiSerialProtocol_UartMessage_h
+#define MKPiSerialProtocol_UartMessage_h
 
-#include <stdio.h>
 #include <stdint.h>
+
+struct UartMemDumpPacketInfo {
+  uint32_t dumpSize;
+  uint32_t blockCount;
+  bool isPartial;
+};
+
+struct UartMemDumpDataBlock {
+  uint32_t block_index;
+  static const uint32_t size = 1024;
+  uint8_t content[size];
+};
 
 enum UartMessageType : uint32_t {
   TextMessage = 0,
   BeginMemoryDump = 1,
   MemoryDumpSegment = 2,
-  EndMemoryDump = 3
+  EndMemoryDump = 3,
+  UserInput = 4
 } typedef UartMessageType;
 
 
 struct UartMessageHeader {
-  UartMessageType messageType;
-  uint32_t contentSize;
+  private : const char header[13] = "***BEG***";
+  public : UartMessageType messageType;
+  public : uint32_t contentSize;
+  public : uint32_t messageSize;
 };
 
 struct UartMessageFooter {
-  private : const char footer1[13] = "***MSGEND***";
-  public  : uint32_t contentSize;
-  private : const char footer2[13] = "***MSGEND***";
+  private : const char footer[13] = "***END***";
 };
 
 struct UartMessage {
   UartMessageHeader header;
-  uint8_t* content;
+  
+  union content {
+    UartMemDumpPacketInfo memDumpPacketInfo;
+    UartMemDumpDataBlock memDumpDataBlock;
+  } content;
   
   UartMessageFooter footer;
   
-  UartMessage(uint8_t* content, uint32_t size, UartMessageType type) {
-    this->content = content;
+  UartMessage(UartMessageType type) {
     header.messageType = type;
-    header.contentSize = size;
-    footer.contentSize = size;
+    header.contentSize = sizeof(content);
+    header.messageSize = sizeof(UartMessage);
   }
 };
 
-class foo {
-  
-  
-public:
-  void bar();
-};
-
-#endif /* defined(__MKPiSerialProtocol__UartMessage__) */
+#endif

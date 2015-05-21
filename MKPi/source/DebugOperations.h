@@ -14,15 +14,7 @@
 
 namespace System {
   namespace Diagnostics {
-    struct UartMemDumpPacketInfo {
-      uint32_t dumpSize;
-      uint32_t blockCount;
-    };
-    
-    struct UartMemDumpDataBlock {
-      uint32_t size;
-      uint8_t content[];
-    };
+
     
     class DebugOperations {
       
